@@ -189,9 +189,22 @@
     .quote-action{flex-shrink:0;}
 
     /* ── FOOTER ── */
-    footer{background:var(--dark);border-top:1px solid rgba(201,169,110,0.12);padding:40px 0 28px;}
-    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    footer{background:var(--dark-card);border-top:1px solid rgba(201,169,110,0.15);padding:68px 0 32px;}
+    .footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px;}
+    .footer-brand img{height:32px;margin-bottom:16px;}
+    .footer-brand p{font-size:13px;color:var(--text-muted);line-height:1.75;max-width:230px;}
+    .footer-socials{display:flex;gap:10px;margin-top:20px;}
+    .footer-soc{width:34px;height:34px;border:1px solid rgba(201,169,110,0.15);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:border-color 0.25s,color 0.25s,background 0.25s;}
+    .footer-soc:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,169,110,0.07);}
+    .footer-col h5{font-size:9px;font-weight:700;letter-spacing:0.44em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+    .footer-col a{display:block;font-size:13px;color:var(--text-muted);margin-bottom:10px;transition:color 0.22s;text-decoration:none;}
+    .footer-col a:hover{color:var(--off-white);}
+    .footer-col address{font-style:normal;font-size:13px;color:var(--text-muted);line-height:1.75;}
+    .footer-col address a{color:var(--text-muted);}
+    .footer-col address a:hover{color:var(--off-white);}
+    .footer-bottom{border-top:1px solid rgba(201,169,110,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
     .footer-bottom p{font-size:12px;color:var(--text-muted);letter-spacing:0.07em;}
+    .footer-tag{font-size:9px;font-weight:600;letter-spacing:0.44em;text-transform:uppercase;color:var(--gold);opacity:0.6;}
 
     /* ── LIGHT MODE — NCA-inspired: Inter font, clean white/slate palette ── */
     body.light{
@@ -262,12 +275,13 @@
     body.light .quote-contact-val{color:#f1f5f9;font-family:'Inter',sans-serif;}
     body.light .btn-primary{background:#b45309;color:#ffffff;}
     body.light .btn-primary:hover{background:#c05621;}
-    body.light footer{background:#ffffff;border-color:rgba(0,0,0,0.08);}
+    body.light footer{background:#e2e8f0;border-top-color:rgba(148,163,184,0.35);}
+    body.light .footer-col a:hover{color:#111827;}
     body.light .footer-bottom p{color:#6b7280;font-family:'Inter',sans-serif;}
 
     /* ── RESPONSIVE ── */
     @media(max-width:1100px){
-      .container{padding:0 32px;}
+      .container{padding:0 32px;.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
       .services-grid{grid-template-columns:1fr;}
       .svc-card.wide{grid-column:span 1;}
       .clients-grid{grid-template-columns:1fr 1fr;}
@@ -279,6 +293,7 @@
       .container{padding:0 20px;}
       .sidebar-summon{padding:14px 8px;}
       .main-content.sidebar-pushed{margin-left:0;}
+      .footer-grid{grid-template-columns:1fr;}
       .footer-bottom{flex-direction:column;text-align:center;}
       .clients-grid{grid-template-columns:1fr;}
       .page-hero{padding:80px 0 50px;}
@@ -558,9 +573,52 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+          <p>NDT East Africa Limited offers Non Destructive Test services on Concrete and Steel Structures in East Africa and beyond. We are based in Nairobi, Kenya.</p>
+          <div class="footer-socials">
+            <a href="https://web.facebook.com/NDTeastafrica/" target="_blank" rel="noopener" class="footer-soc" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/eastndt" target="_blank" rel="noopener" class="footer-soc" aria-label="Twitter/X">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/ndt_ea/" target="_blank" rel="noopener" class="footer-soc" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <a href="ndtabout.html">Who We Are</a>
+          <a href="ndtabout.html">Why NDT-EA</a>
+          <a href="services.html">Services</a>
+          <a href="timeline.html">Our Past Work</a>
+          <a href="gallery.html">Our Gallery</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">NDTs on Concrete Structures</a>
+          <a href="services.html">NDTs on Steel Structures</a>
+          <a href="services.html">Foundation / Geotechnical Investigations</a>
+          <a href="services.html">Crane Proof Load Tests &amp; Inspections</a>
+          <a href="services.html">Structural Audit Services</a>
+        </div>
+        <div class="footer-col">
+          <h5>Get In Touch</h5>
+          <address>
+            Water Sys Plaza<br/>
+            Biashara Street, Nairobi<br/><br/>
+            <a href="tel:+254721414663">+254 721 414 663</a><br/><br/>
+            <a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a>
+          </address>
+        </div>
+      </div>
       <div class="footer-bottom">
-        <p>Copyright &copy; 2025 NDT East Africa Limited. All Rights Reserved.</p>
-        <p style="color:var(--gold);font-size:10px;letter-spacing:0.22em">PRECISION &middot; INTEGRITY &middot; EXCELLENCE</p>
+        <p>Copyright &copy; 2026 <a href="index.html" style="color:inherit">NDT East Africa</a>. All Rights Reserved.</p>
+        <p class="footer-tag">Precision &middot; Integrity &middot; Excellence</p>
       </div>
     </div>
   </footer>

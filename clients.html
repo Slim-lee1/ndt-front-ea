@@ -188,9 +188,9 @@
     body.light .page-hero-fade{background:linear-gradient(90deg,rgba(15,23,42,0.92) 30%,rgba(15,23,42,0.65) 65%,rgba(15,23,42,0.35) 100%);}
     body.light .page-hero h1{color:#b45309;}
     body.light .page-hero h1 em{color:#b45309;}
-    body.light
-    body.light
-    body.light
+    body.light .clients-intro h2{color:#111827;}
+    body.light .clients-intro p{color:#4b5563;}
+    body.light .page-hero-img{opacity:0.38;}
     body.light .clients-intro h2 em{color:#b45309;}
     body.light .clients-section-header h2 em{color:#b45309;}
     body.light .client-card{background:#ffffff;border-color:rgba(0,0,0,0.07);box-shadow:0 4px 18px rgba(15,23,42,0.06);}
@@ -309,7 +309,7 @@
 
   <!-- HERO -->
   <div class="page-hero">
-    <img class="page-hero-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif" alt="NDT East Africa Clients"/>
+    <img class="page-hero-img" src="backg-serv.webp" alt="NDT East Africa Clients"/>
     <div class="page-hero-fade"></div>
     <div class="container page-hero-content">
       <span class="section-label">Who We Serve</span>
@@ -327,8 +327,6 @@
           <h2>Serving a Broad Range of <em>Industries</em></h2>
           <p>NDT East Africa Limited works with clients across the public and private sectors — from individual property buyers seeking peace of mind to large financial institutions verifying structural integrity for investment purposes. Our non-destructive testing methods are trusted because they are accurate, non-invasive, and professionally delivered.</p>
         </div>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -347,7 +345,7 @@
         <!-- Card 1 -->
         <div class="client-card reveal">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="contra-private.jpg"
             alt="Private Developers and Buyers"/>
           <div class="client-card-body">
             <span class="client-card-tag">Residential &amp; Commercial</span>
@@ -359,7 +357,7 @@
         <!-- Card 2 -->
         <div class="client-card reveal d1">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="contra-s.webp"
             alt="Contractors"/>
           <div class="client-card-body">
             <span class="client-card-tag">Construction</span>
@@ -371,7 +369,7 @@
         <!-- Card 3 -->
         <div class="client-card reveal d2">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="contra-project.webp"
             alt="Project Consultants"/>
           <div class="client-card-body">
             <span class="client-card-tag">Professional Services</span>
@@ -383,7 +381,7 @@
         <!-- Card 4 -->
         <div class="client-card reveal d1">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="contra-NGO.jpg"
             alt="Non-Governmental Organisations"/>
           <div class="client-card-body">
             <span class="client-card-tag">NGOs</span>
@@ -395,7 +393,7 @@
         <!-- Card 5 -->
         <div class="client-card reveal d2">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="cont-finance.jpg"
             alt="Financial Institutions"/>
           <div class="client-card-body">
             <span class="client-card-tag">Finance &amp; Insurance</span>
@@ -407,7 +405,7 @@
         <!-- Card 6 -->
         <div class="client-card reveal d3">
           <img class="client-card-img"
-            src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif"
+            src="contra-public.jpg"
             alt="Public Institutions"/>
           <div class="client-card-body">
             <span class="client-card-tag">Government &amp; Public Sector</span>
@@ -492,7 +490,7 @@
 </div><!-- /main-content -->
 </div><!-- /site-wrapper -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // SIDEBAR
   var summonBtn = document.getElementById('sidebar-summon');
   var sidebar = document.getElementById('sidebar');
@@ -550,7 +548,7 @@
     applyTheme(isLight);
     localStorage.setItem('ndt-theme', isLight ? 'light' : 'dark');
   });
-  if (localStorage.getItem('ndt-theme') === 'light') { applyTheme(true); }
+  if (localStorage.getItem('ndt-theme') === 'light') applyTheme(true);
 </script>
 </body>
 </html>

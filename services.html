@@ -151,7 +151,7 @@
     .svc-img{width:100%;height:200px;object-fit:cover;display:block;opacity:0.65;transition:opacity 0.4s;}
     .svc-card:hover .svc-img{opacity:0.8;}
     .svc-body{padding:32px 40px 36px;}
-    .svc-num{font-family:'Lato',sans-serif;font-size:52px;font-weight:700;color:rgba(201,169,110,0.11);line-height:1;margin-bottom:18px;}
+    .svc-num{display:none;}
     .svc-title{font-family:'Lato',sans-serif;font-size:21px;font-weight:700;margin-bottom:12px;}
     .svc-desc{font-size:14px;line-height:1.85;color:var(--text-light);margin-bottom:20px;}
 
@@ -171,7 +171,7 @@
     .client-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform 0.4s;transform-origin:bottom;}
     .client-card:hover{border-color:rgba(201,169,110,0.22);transform:translateY(-3px);}
     .client-card:hover::before{transform:scaleY(1);}
-    .client-num{font-family:'Lato',sans-serif;font-size:38px;font-weight:700;color:rgba(201,169,110,0.1);line-height:1;margin-bottom:14px;}
+    .client-num{display:none;}
     .client-title{font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:var(--off-white);margin-bottom:10px;}
     .client-desc{font-size:13px;color:var(--text-light);line-height:1.75;}
 
@@ -256,7 +256,7 @@
     body.light .svc-card.glow{background:linear-gradient(135deg,rgba(180,83,9,0.05),rgba(180,83,9,0.01));}
     body.light .svc-card:hover{border-color:rgba(180,83,9,0.3);box-shadow:0 8px 28px rgba(15,23,42,0.10);}
     body.light .svc-img{opacity:0.9;filter:brightness(0.97);}
-    body.light .svc-num{color:rgba(0,0,0,0.06);}
+    body.light .svc-num{display:none;}
     body.light .svc-title{color:#111827;font-family:'Inter',sans-serif;font-weight:600;}
     body.light .svc-desc{color:#4b5563;font-family:'Inter',sans-serif;}
     body.light .method-tag{color:#b45309;border-color:rgba(180,83,9,0.22);background:rgba(180,83,9,0.04);font-family:'Inter',sans-serif;}
@@ -265,7 +265,7 @@
     body.light .clients-band{background:#f9fafb;border-top-color:rgba(0,0,0,0.07);}
     body.light .client-card{background:#ffffff;border-color:rgba(0,0,0,0.07);box-shadow:0 4px 18px rgba(15,23,42,0.06);}
     body.light .client-card:hover{border-color:rgba(180,83,9,0.3);box-shadow:0 8px 28px rgba(15,23,42,0.10);}
-    body.light .client-num{color:rgba(0,0,0,0.06);}
+    body.light .client-num{display:none;}
     body.light .client-title{color:#111827;font-family:'Inter',sans-serif;font-weight:600;}
     body.light .client-desc{color:#4b5563;font-family:'Inter',sans-serif;}
     body.light .quote-band{background:linear-gradient(135deg,#1e293b 0%,#0f172a 60%,#1e293b 100%);}
@@ -389,7 +389,7 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <img class="page-hero-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif" alt="NDT East Africa Services"/>
+    <img class="page-hero-img" src="backg-serv.webp" alt="NDT East Africa Services"/>
     <div class="page-hero-fade"></div>
     <div class="container page-hero-content">
       <span class="section-label">What We Do</span>
@@ -416,7 +416,6 @@
         <div class="svc-card glow reveal">
           <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_r5w1n3r5w1n3r5w1-1.avif" alt="NDTs on Concrete Structures" class="svc-img"/>
           <div class="svc-body">
-            <div class="svc-num">01</div>
             <div class="svc-title">NDTs on Concrete Structures</div>
             <div class="svc-desc">Non-destructive evaluation of concrete structures using a comprehensive suite of testing methods — from surface hardness to internal defect mapping — without causing any damage to the structure.</div>
             <div class="svc-methods">
@@ -434,9 +433,8 @@
 
         <!-- 02 STEEL -->
         <div class="svc-card reveal d1">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif" alt="NDTs on Steel Structures" class="svc-img"/>
+          <img src="stee-serv.webp" alt="NDTs on Steel Structures" class="svc-img"/>
           <div class="svc-body">
-            <div class="svc-num">02</div>
             <div class="svc-title">NDTs on Steel Structures</div>
             <div class="svc-desc">Accurate inspection methods to detect surface and sub-surface defects, measure protective coating thickness, and verify the structural integrity of steel elements and welds across all load-bearing components.</div>
             <div class="svc-methods">
@@ -452,9 +450,8 @@
 
         <!-- 03 FOUNDATION -->
         <div class="svc-card reveal d2">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ciemb5ciemb5ciem-1.avif" alt="Foundation and Geotechnical Investigations" class="svc-img"/>
+          <img src="Geo-serv.webp" alt="Foundation and Geotechnical Investigations" class="svc-img"/>
           <div class="svc-body">
-            <div class="svc-num">03</div>
             <div class="svc-title">Foundation / Geotechnical Investigations</div>
             <div class="svc-desc">Subsurface investigations that determine soil properties and foundation suitability through borehole drilling, sampling, and in-situ testing — informing safe and cost-effective foundation designs.</div>
             <div class="svc-bullets">
@@ -467,9 +464,8 @@
 
         <!-- 04 CRANE -->
         <div class="svc-card glow reveal d3">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_r5w1n3r5w1n3r5w1-1.avif" alt="Crane Proof Load Tests and Inspections" class="svc-img"/>
+          <img src="crane-serv.webp" alt="Crane Proof Load Tests and Inspections" class="svc-img"/>
           <div class="svc-body">
-            <div class="svc-num">04</div>
             <div class="svc-title">Crane Proof Load Tests &amp; Inspections</div>
             <div class="svc-desc">Conducted in accordance with ASME B30.2-2016, this procedure verifies that a crane can lift and operate safely at or above its rated capacity — covering deflection measurement, brake testing, and full operational performance assessment.</div>
             <div class="svc-methods">
@@ -487,9 +483,8 @@
 
         <!-- 05 STRUCTURAL AUDITS — WIDE -->
         <div class="svc-card wide reveal">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif" alt="Structural Audit Services" class="svc-img" style="height:240px;"/>
+          <img src="audit-serv.avif" alt="Structural Audit Services" class="svc-img" style="height:240px;"/>
           <div class="svc-body">
-            <div class="svc-num">05</div>
             <div class="svc-title">Structural Audit Services</div>
             <div class="svc-desc">Comprehensive structural audits for concrete and steel structures. We provide detailed assessment reports, corrective design recommendations, and systematic monitoring of structural cracks and deterioration — giving clients the insight needed to act with confidence.</div>
           </div>
@@ -507,32 +502,26 @@
       <p class="reveal" style="text-align:center;font-size:15px;color:var(--text-light);max-width:560px;margin:0 auto 52px;">Serving engineers, developers, and decision-makers who demand concrete insight, lasting solutions, and trusted results.</p>
       <div class="clients-grid">
         <div class="client-card reveal">
-          <div class="client-num">01</div>
           <div class="client-title">Private Developers &amp; Buyers</div>
           <div class="client-desc">Individuals and developers who wish to verify the structural integrity of their construction projects before or during occupation.</div>
         </div>
         <div class="client-card reveal d1">
-          <div class="client-num">02</div>
           <div class="client-title">Contractors</div>
           <div class="client-desc">Contractors utilizing non-destructive tests for quality control and assurance on concrete works, or to allay concerns about the quality of completed structures.</div>
         </div>
         <div class="client-card reveal d2">
-          <div class="client-num">03</div>
           <div class="client-title">Project Consultants</div>
           <div class="client-desc">Consultants who demand NDT to ascertain the structural integrity of a given concrete or steel structure as part of their professional due diligence.</div>
         </div>
         <div class="client-card reveal d3">
-          <div class="client-num">04</div>
           <div class="client-title">Non-Governmental Organizations</div>
           <div class="client-desc">NGOs that need to establish or verify the structural integrity of their facilities and infrastructure before or during use.</div>
         </div>
         <div class="client-card reveal">
-          <div class="client-num">05</div>
           <div class="client-title">Financial Institutions</div>
           <div class="client-desc">Banks and insurers that require structural integrity assessments for insurance underwriting or financial support to individuals and developers.</div>
         </div>
         <div class="client-card reveal d1">
-          <div class="client-num">06</div>
           <div class="client-title">Public Institutions</div>
           <div class="client-desc">Government bodies and public agencies that need to establish or verify the structural integrity of their buildings and infrastructure assets.</div>
         </div>
@@ -627,7 +616,7 @@
 </div><!-- /main-content -->
 </div><!-- /site-wrapper -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── SIDEBAR with auto-close on mouse leave ──
   const summonBtn   = document.getElementById('sidebar-summon');
   const sidebar     = document.getElementById('sidebar');
@@ -698,6 +687,8 @@
     localStorage.setItem('ndt-theme', isLight ? 'light' : 'dark');
   }
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+  // ── RESTORE SAVED THEME ──
   if (localStorage.getItem('ndt-theme') === 'light') {
     document.body.classList.add('light');
     document.getElementById('toggle-label').textContent = 'Dark Mode';

@@ -281,12 +281,55 @@
     body.light .footer-col a:hover{color:#111827;}
     body.light .footer-bottom p{color:#6b7280;font-family:'Inter',sans-serif;}
 
+
+    /* ── EQUIPMENT FOR HIRE ── */
+    .hire-section{padding:90px 0;border-top:1px solid rgba(201,169,110,0.1);}
+    .hire-header{text-align:center;margin-bottom:56px;}
+    .hire-header p{font-size:15px;color:var(--text-light);max-width:560px;margin:12px auto 0;}
+    .hire-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+    .hire-card{background:var(--dark-card);border:1px solid rgba(201,169,110,0.07);overflow:hidden;position:relative;transition:border-color 0.4s,transform 0.35s;}
+    .hire-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform 0.4s;transform-origin:bottom;}
+    .hire-card:hover{border-color:rgba(201,169,110,0.22);transform:translateY(-3px);}
+    .hire-card:hover::before{transform:scaleY(1);}
+    .hire-img{width:100%;height:160px;object-fit:cover;opacity:0.65;display:block;transition:opacity 0.4s;}
+    .hire-card:hover .hire-img{opacity:0.82;}
+    .hire-body{padding:24px 28px 28px;}
+    .hire-name{font-family:'Lato',sans-serif;font-size:16px;font-weight:700;color:var(--off-white);margin-bottom:10px;}
+    .hire-purpose{font-size:13px;color:var(--text-light);line-height:1.75;}
+    .hire-tag{display:inline-block;margin-top:14px;font-size:9px;font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,169,110,0.3);padding:5px 12px;}
+
+    /* ── NDT METHODS ── */
+    .methods-section{padding:90px 0;border-top:1px solid rgba(201,169,110,0.1);}
+    .methods-inner{max-width:860px;margin:0 auto;}
+    .methods-header{text-align:center;margin-bottom:56px;}
+    .methods-header p{font-size:15px;color:var(--text-light);max-width:560px;margin:12px auto 0;}
+    .methods-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+    .method-card{background:var(--dark-card);border:1px solid rgba(201,169,110,0.07);padding:32px 28px;position:relative;transition:border-color 0.4s,transform 0.35s;}
+    .method-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform 0.4s;transform-origin:bottom;}
+    .method-card:hover{border-color:rgba(201,169,110,0.22);transform:translateY(-3px);}
+    .method-card:hover::before{transform:scaleY(1);}
+    .method-abbr{display:none;}
+    .method-name{font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:var(--off-white);margin-bottom:10px;}
+    .method-desc{font-size:12.5px;color:var(--text-light);line-height:1.75;}
+
+    /* light mode overrides */
+    body.light .hire-section,body.light .methods-section{border-top-color:rgba(148,163,184,0.25);}
+    body.light .hire-card,body.light .method-card{background:#ffffff;border-color:rgba(0,0,0,0.07);box-shadow:0 4px 18px rgba(15,23,42,0.06);}
+    body.light .hire-card:hover,body.light .method-card:hover{border-color:rgba(180,83,9,0.3);box-shadow:0 8px 28px rgba(15,23,42,0.10);}
+    body.light .hire-name,body.light .method-name{color:#111827;font-family:'Inter',sans-serif;font-weight:600;}
+    body.light .hire-purpose,body.light .method-desc{color:#4b5563;font-family:'Inter',sans-serif;}
+    body.light .hire-img{opacity:0.9;filter:brightness(0.97);}
+    body.light .hire-tag{color:#b45309;border-color:rgba(180,83,9,0.3);}
+
     /* ── RESPONSIVE ── */
     @media(max-width:1100px){
-      .container{padding:0 32px;.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+      .container{padding:0 32px;}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:36px;}
       .services-grid{grid-template-columns:1fr;}
       .svc-card.wide{grid-column:span 1;}
       .clients-grid{grid-template-columns:1fr 1fr;}
+      .hire-grid{grid-template-columns:1fr 1fr;}
+      .methods-grid{grid-template-columns:repeat(2,1fr);}
       .quote-inner{flex-direction:column;align-items:flex-start;gap:36px;}
     }
     @media(max-width:768px){
@@ -298,6 +341,8 @@
       .footer-grid{grid-template-columns:1fr;}
       .footer-bottom{flex-direction:column;text-align:center;}
       .clients-grid{grid-template-columns:1fr;}
+      .hire-grid{grid-template-columns:1fr;}
+      .methods-grid{grid-template-columns:1fr 1fr;}
       .page-hero{padding:80px 0 50px;}
     }
   </style>
@@ -391,7 +436,7 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <img class="page-hero-img" src="backg-serv.webp" alt="NDT East Africa Services"/>
+    <img class="page-hero-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ru15adru15adru15-1.avif" alt="NDT East Africa Services"/>
     <div class="page-hero-fade"></div>
     <div class="container page-hero-content">
       <span class="section-label">What We Do</span>
@@ -435,7 +480,7 @@
 
         <!-- 02 STEEL -->
         <div class="svc-card reveal d1">
-          <img src="stee-serv.webp" alt="NDTs on Steel Structures" class="svc-img"/>
+          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ciemb5ciemb5ciem-1.avif" alt="NDTs on Steel Structures" class="svc-img"/>
           <div class="svc-body">
             <div class="svc-title">NDTs on Steel Structures</div>
             <div class="svc-desc">Accurate inspection methods to detect surface and sub-surface defects, measure protective coating thickness, and verify the structural integrity of steel elements and welds across all load-bearing components.</div>
@@ -452,7 +497,7 @@
 
         <!-- 03 FOUNDATION -->
         <div class="svc-card reveal d2">
-          <img src="Geo-serv.webp" alt="Foundation and Geotechnical Investigations" class="svc-img"/>
+          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_lm1f5dlm1f5dlm1f-1.webp" alt="Foundation and Geotechnical Investigations" class="svc-img"/>
           <div class="svc-body">
             <div class="svc-title">Foundation / Geotechnical Investigations</div>
             <div class="svc-desc">Subsurface investigations that determine soil properties and foundation suitability through borehole drilling, sampling, and in-situ testing — informing safe and cost-effective foundation designs.</div>
@@ -466,7 +511,7 @@
 
         <!-- 04 CRANE -->
         <div class="svc-card glow reveal d3">
-          <img src="crane-serv.webp" alt="Crane Proof Load Tests and Inspections" class="svc-img"/>
+          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_x9lc80x9lc80x9lc-1.webp" alt="Crane Proof Load Tests and Inspections" class="svc-img"/>
           <div class="svc-body">
             <div class="svc-title">Crane Proof Load Tests &amp; Inspections</div>
             <div class="svc-desc">Conducted in accordance with ASME B30.2-2016, this procedure verifies that a crane can lift and operate safely at or above its rated capacity — covering deflection measurement, brake testing, and full operational performance assessment.</div>
@@ -485,7 +530,7 @@
 
         <!-- 05 STRUCTURAL AUDITS — WIDE -->
         <div class="svc-card wide reveal">
-          <img src="audit-serv.avif" alt="Structural Audit Services" class="svc-img" style="height:240px;"/>
+          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_v426euv426euv426.webp" alt="Structural Audit Services" class="svc-img" style="height:240px;"/>
           <div class="svc-body">
             <div class="svc-title">Structural Audit Services</div>
             <div class="svc-desc">Comprehensive structural audits for concrete and steel structures. We provide detailed assessment reports, corrective design recommendations, and systematic monitoring of structural cracks and deterioration — giving clients the insight needed to act with confidence.</div>
@@ -496,44 +541,141 @@
     </div>
   </div>
 
-  <!-- TARGET CLIENTS -->
-  <div class="clients-band">
+  <!-- EQUIPMENT FOR HIRE -->
+  <div class="hire-section">
     <div class="container">
-      <span class="section-label reveal" style="text-align:center;display:block;">Who We Serve</span>
-      <h2 class="reveal" style="text-align:center;font-size:clamp(28px,3.5vw,44px);margin-bottom:12px;">Our Target <em style="font-style:italic;color:var(--gold-light)">Clients</em></h2>
-      <p class="reveal" style="text-align:center;font-size:15px;color:var(--text-light);max-width:560px;margin:0 auto 52px;">Serving engineers, developers, and decision-makers who demand concrete insight, lasting solutions, and trusted results.</p>
-      <div class="clients-grid">
-        <div class="client-card reveal">
-          <div class="client-title">Private Developers &amp; Buyers</div>
-          <div class="client-desc">Individuals and developers who wish to verify the structural integrity of their construction projects before or during occupation.</div>
-        </div>
-        <div class="client-card reveal d1">
-          <div class="client-title">Contractors</div>
-          <div class="client-desc">Contractors utilizing non-destructive tests for quality control and assurance on concrete works, or to allay concerns about the quality of completed structures.</div>
-        </div>
-        <div class="client-card reveal d2">
-          <div class="client-title">Project Consultants</div>
-          <div class="client-desc">Consultants who demand NDT to ascertain the structural integrity of a given concrete or steel structure as part of their professional due diligence.</div>
-        </div>
-        <div class="client-card reveal d3">
-          <div class="client-title">Non-Governmental Organizations</div>
-          <div class="client-desc">NGOs that need to establish or verify the structural integrity of their facilities and infrastructure before or during use.</div>
-        </div>
-        <div class="client-card reveal">
-          <div class="client-title">Financial Institutions</div>
-          <div class="client-desc">Banks and insurers that require structural integrity assessments for insurance underwriting or financial support to individuals and developers.</div>
-        </div>
-        <div class="client-card reveal d1">
-          <div class="client-title">Public Institutions</div>
-          <div class="client-desc">Government bodies and public agencies that need to establish or verify the structural integrity of their buildings and infrastructure assets.</div>
-        </div>
+      <div class="hire-header">
+        <span class="section-label reveal" style="display:block;">Available for Hire</span>
+        <h2 class="reveal" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:12px;">NDT Equipment <em style="font-style:italic;color:var(--gold-light)">For Hire</em></h2>
+        <p class="reveal">Professional-grade instruments available for short or extended engagements — supplied with technical guidance from our team.</p>
       </div>
+      <div class="hire-grid">
+
+        <div class="hire-card reveal">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_eg0upveg0upveg0u-removebg-preview-1.png" alt="UPV Meter"/>
+          <div class="hire-body">
+            <div class="hire-name">UPV — Ultrasonic Pulse Velocity Meter</div>
+            <div class="hire-purpose">Sends ultrasonic pulses through concrete to measure wave velocity — used to assess concrete quality, detect internal voids, cracks, and estimate uniformity and homogeneity of the structure.</div>
+            <span class="hire-tag">Concrete NDT</span>
+          </div>
+        </div>
+
+        <div class="hire-card reveal d1">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_9844ps9844ps9844-removebg-preview-1.png" alt="Schmidt Hammer"/>
+          <div class="hire-body">
+            <div class="hire-name">Schmidt / Rebound Hammer</div>
+            <div class="hire-purpose">Measures the rebound of a spring-driven mass off the concrete surface to estimate relative compressive strength and surface hardness — fast, portable, and non-damaging.</div>
+            <span class="hire-tag">Concrete NDT</span>
+          </div>
+        </div>
+
+        <div class="hire-card reveal d2">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_8m575c8m575c8m57-removebg-preview-1.png" alt="Rebar Scanner"/>
+          <div class="hire-body">
+            <div class="hire-name">Ferroscan / Profometer — Rebar Scanner</div>
+            <div class="hire-purpose">Scans concrete elements to locate reinforcement bars, measure concrete cover depth, rebar diameter, and spacing — essential for structural assessment and repair planning.</div>
+            <span class="hire-tag">Concrete NDT</span>
+          </div>
+        </div>
+
+        <div class="hire-card reveal d3">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_stpkvnstpkvnstpk-removebg-preview-1.png" alt="Thermographic Camera"/>
+          <div class="hire-body">
+            <div class="hire-name">Infrared Thermography Camera</div>
+            <div class="hire-purpose">Detects thermal anomalies across building surfaces — used to identify delamination, moisture ingress, insulation voids, and sub-surface defects without any physical intrusion.</div>
+            <span class="hire-tag">Concrete &amp; Steel</span>
+          </div>
+        </div>
+
+        <div class="hire-card reveal">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_ciemb5ciemb5ciem-1.avif" alt="Ultrasonic Thickness Gauge"/>
+          <div class="hire-body">
+            <div class="hire-name">Ultrasonic Steel Thickness Gauge</div>
+            <div class="hire-purpose">Measures the wall or plate thickness of steel elements from a single surface — detects corrosion loss and material thinning without cutting or damaging the structure.</div>
+            <span class="hire-tag">Steel NDT</span>
+          </div>
+        </div>
+
+        <div class="hire-card reveal d1">
+          <img class="hire-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_r5w1n3r5w1n3r5w1-1.avif" alt="Ground Penetrating Radar"/>
+          <div class="hire-body">
+            <div class="hire-name">Ground Penetrating Radar (GPR)</div>
+            <div class="hire-purpose">Penetrates deep into concrete or ground to map buried objects, post-tension cables, conduits, voids, and subsurface features — high resolution with no drilling required.</div>
+            <span class="hire-tag">Concrete &amp; Geotechnical</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- NDT METHODS -->
+  <div class="methods-section">
+    <div class="container">
+      <div class="methods-inner">
+        <div class="methods-header">
+        <span class="section-label reveal" style="display:block;">How We Test</span>
+        <h2 class="reveal" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:12px;">NDT <em style="font-style:italic;color:var(--gold-light)">Methods We Apply</em></h2>
+        <p class="reveal">Eight proven non-destructive testing methods deployed by our certified engineers — each selected to match the specific material, condition, and inspection objective.</p>
+      </div>
+      <div class="methods-grid">
+
+        <div class="method-card reveal">
+          <div class="method-abbr">VT</div>
+          <div class="method-name">Visual NDT</div>
+          <div class="method-desc">A certified technician examines the material for surface-level discontinuities, corrosion, and misalignment using the naked eye, magnifiers, mirrors, and borescopes. Often the first step in any inspection.</div>
+        </div>
+
+        <div class="method-card reveal d1">
+          <div class="method-abbr">UT</div>
+          <div class="method-name">Ultrasonic Testing</div>
+          <div class="method-desc">High-frequency sound waves are transmitted through the material to detect internal flaws, measure thickness, and assess concrete uniformity — including UPV testing on columns, slabs and beams.</div>
+        </div>
+
+        <div class="method-card reveal d2">
+          <div class="method-abbr">MT</div>
+          <div class="method-name">Magnetic Particle NDT</div>
+          <div class="method-desc">A magnetic field is induced into ferromagnetic steel components. Iron particles gather at flux leakage points, making surface and near-surface cracks and discontinuities clearly visible.</div>
+        </div>
+
+        <div class="method-card reveal d3">
+          <div class="method-abbr">PT</div>
+          <div class="method-name">Dye Penetrant NDT</div>
+          <div class="method-desc">A liquid dye is applied to the surface and drawn into cracks by capillary action. After removal, a developer reveals the defect indications — effective on non-porous metals, ceramics, and plastics.</div>
+        </div>
+
+        <div class="method-card reveal">
+          <div class="method-abbr">ET</div>
+          <div class="method-name">Eddy Current NDT</div>
+          <div class="method-desc">Electromagnetic induction is used to detect surface and sub-surface flaws in conductive materials. Particularly useful for measuring coating thickness, detecting cracks, and evaluating weld quality.</div>
+        </div>
+
+        <div class="method-card reveal d1">
+          <div class="method-abbr">AE</div>
+          <div class="method-name">Acoustic Emission NDT</div>
+          <div class="method-desc">Passive sensors detect high-frequency stress waves emitted when a material deforms or cracks — allowing real-time monitoring of structural damage progression under load.</div>
+        </div>
+
+        <div class="method-card reveal d2">
+          <div class="method-abbr">LT</div>
+          <div class="method-name">Leak Testing</div>
+          <div class="method-desc">Detects and locates leaks in pressure vessels, pipelines, and containment systems using pressure change, bubble emission, or tracer gas methods — ensuring containment integrity.</div>
+        </div>
+
+        <div class="method-card reveal d3">
+          <div class="method-abbr">IRT</div>
+          <div class="method-name">Infrared Thermography</div>
+          <div class="method-desc">Thermal imaging detects temperature differentials on surfaces caused by subsurface anomalies — used for identifying delamination, moisture ingress, voids, and insulation failures in buildings and structures.</div>
+        </div>
+
+      </div>
+      </div><!-- /.methods-inner -->
     </div>
   </div>
 
   <!-- GET A QUOTE CTA -->
   <div class="quote-band">
-    <img class="quote-band-bg" src="serv-footg.webp" alt=""/>
+    <img class="quote-band-bg" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/Gemini_Generated_Image_r5w1n3r5w1n3r5w1-1.avif" alt=""/>
     <div class="container">
       <div class="quote-inner reveal">
         <div class="quote-text">
@@ -604,7 +746,7 @@
             Water Sys Plaza<br/>
             Biashara Street, Nairobi<br/><br/>
             <a href="tel:+254721414663">+254 721 414 663</a><br/><br/>
-            <a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a>
+            <a href="mailto:info@ndt-ea.com" style="color:inherit;text-decoration:none;">info@ndt-ea.com</a>
           </address>
         </div>
       </div>
@@ -619,7 +761,7 @@
 </div><!-- /main-content -->
 </div><!-- /site-wrapper -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── SIDEBAR with auto-close on mouse leave ──
   const summonBtn   = document.getElementById('sidebar-summon');
   const sidebar     = document.getElementById('sidebar');
@@ -690,8 +832,6 @@
     localStorage.setItem('ndt-theme', isLight ? 'light' : 'dark');
   }
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-
-  // ── RESTORE SAVED THEME ──
   if (localStorage.getItem('ndt-theme') === 'light') {
     document.body.classList.add('light');
     document.getElementById('toggle-label').textContent = 'Dark Mode';

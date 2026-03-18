@@ -296,7 +296,7 @@ body::after{
 .sidebar{
   position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;
   background:#080808;border-right:1px solid rgba(201,169,110,0.12);
-  display:flex;flex-direction:column;z-index:1000;overflow-y:auto;
+  display:flex;flex-direction:column;z-index:1100;overflow-y:auto;
   transform:translateX(-100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);
 }
 .sidebar.open{transform:translateX(0);}
@@ -474,23 +474,75 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 .biz-item::before{content:'→';color:var(--gold);font-size:11px;margin-top:3px}
 
 /* ===================================================
-   SECTION: WHY CHOOSE US
+   SECTION: WHY CHOOSE US — animated bg + carousel
 =================================================== */
 #why-us{
-  background:var(--ink2);
-  padding:130px 0;
-  position:relative;overflow:hidden;
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  min-height:520px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.why-us-video-bg{
+  position:absolute;inset:0;z-index:0;
+  background:var(--ink3);
+  overflow:hidden;
+}
+.why-us-video-bg::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 85% 40%, rgba(201,169,110,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 70%, rgba(158,123,70,.05) 0%, transparent 55%);
+  animation:why-bg-breathe 10s ease-in-out infinite alternate;
+}
+/* diagonal motion lines */
+.why-us-video-bg::after{
+  content:'';
+  position:absolute;inset:-100%;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(201,169,110,.018) 40px,
+    rgba(201,169,110,.018) 41px
+  );
+  animation:why-lines-drift 18s linear infinite;
+}
+.why-us-orb{
+  position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,169,110,.06) 0%, transparent 65%);
+  right:-150px;top:-100px;
+  animation:why-orb-float 14s ease-in-out infinite;
+  pointer-events:none;z-index:1;
+}
+@keyframes why-bg-breathe{
+  0%{opacity:.6;transform:scale(1);}
+  100%{opacity:1;transform:scale(1.08);}
+}
+@keyframes why-lines-drift{
+  0%{transform:translateX(0) translateY(0);}
+  100%{transform:translateX(82px) translateY(82px);}
+}
+@keyframes why-orb-float{
+  0%,100%{transform:translate(0,0);}
+  50%{transform:translate(-40px, 60px);}
 }
 /* ghost watermark */
 .why-ghost{
-  position:absolute;right:-80px;top:50%;
+  position:absolute;right:-60px;top:50%;
   transform:translateY(-50%);
-  font-family:var(--ff-display);font-size:260px;font-weight:900;
-  color:rgba(201,169,110,.03);line-height:1;
+  font-family:var(--ff-display);font-size:200px;font-weight:900;
+  color:rgba(201,169,110,.025);line-height:1;
   pointer-events:none;user-select:none;white-space:nowrap;
+  z-index:1;
+}
+.why-us-inner{
+  position:relative;z-index:2;
+  padding:90px 0;
 }
 .why-grid{
-  display:grid;grid-template-columns:1.1fr 1fr;gap:90px;align-items:center;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;
   position:relative;z-index:1;
 }
 .why-text .eyebrow{margin-bottom:18px}
@@ -498,94 +550,196 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 .why-text .rule{margin:20px 0 20px}
 .why-text p{font-size:15px;line-height:1.88;color:var(--text)}
 
+/* ── CAROUSEL ── */
 .values-wrap{padding-top:6px}
-.values-eyebrow{margin-bottom:18px}
-.values-subtitle{font-size:13.5px;color:var(--text2);margin-bottom:26px;font-style:italic}
+.values-eyebrow{margin-bottom:12px}
+.values-subtitle{font-size:13px;color:var(--text2);margin-bottom:20px;font-style:italic}
 
-.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.val-carousel{position:relative;overflow:hidden;}
+.val-track{
+  display:flex;
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
 .val-card{
-  background:var(--ink3);
-  border:1px solid var(--border2);
-  padding:30px 24px;
+  flex:0 0 100%;
+  background:rgba(201,169,110,.05);
+  border:1px solid var(--border);
+  border-top:2px solid var(--gold);
+  padding:34px 30px;
   position:relative;overflow:hidden;
-  transition:border-color .35s,transform .35s var(--ease);
+  box-sizing:border-box;
 }
-.val-card::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:var(--gold);transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--ease);
-}
-.val-card:hover{border-color:rgba(201,169,110,.3);transform:translateY(-4px)}
-.val-card:hover::after{transform:scaleX(1)}
+.val-card::after{display:none;}/* remove old bottom bar */
 .val-icon{
-  width:32px;height:32px;margin-bottom:14px;
-  color:var(--gold);opacity:.85;
+  width:34px;height:34px;margin-bottom:16px;
+  color:var(--gold);opacity:.9;
 }
 .val-name{
   font-size:10px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:9px;
+  color:var(--gold);margin-bottom:10px;
 }
-.val-desc{font-size:12.5px;color:var(--text2);line-height:1.68}
+.val-desc{font-size:13.5px;color:var(--text);line-height:1.72}
+
+/* dots */
+.val-dots{
+  display:flex;gap:8px;margin-top:18px;align-items:center;
+}
+.val-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);
+  cursor:pointer;transition:background .3s,transform .3s;border:none;padding:0;
+}
+.val-dot.active{background:var(--gold);transform:scale(1.4);}
+
+/* nav arrows */
+.val-nav{
+  display:flex;gap:8px;margin-top:16px;
+}
+.val-arrow{
+  width:34px;height:34px;border:1px solid var(--border);
+  background:none;color:var(--gold);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+  transition:background .25s,border-color .25s;
+}
+.val-arrow:hover{background:rgba(201,169,110,.1);border-color:var(--gold);}
+
+/* light mode */
+body.light .why-us-video-bg{background:#f9fafb;}
+body.light .val-card{background:#fff;border-color:rgba(148,163,184,.3);}
+body.light #why-us{background:#f9fafb;}
+body.light .why-ghost{color:rgba(148,163,184,.06);}
 
 /* ===================================================
-   SECTION: WHY NDT TESTS
+   SECTION: WHY NDT TESTS — video-bg hero style
 =================================================== */
-#why-ndt{padding:130px 0}
+#why-ndt{
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  min-height:600px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+/* animated motion background */
+.why-ndt-video-bg{
+  position:absolute;inset:0;z-index:0;
+  background:#080808;
+  overflow:hidden;
+}
+.why-ndt-video-bg::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,169,110,.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(158,123,70,.06) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 80%, rgba(201,169,110,.04) 0%, transparent 50%);
+  animation:ndt-bg-pulse 8s ease-in-out infinite alternate;
+}
+.why-ndt-video-bg::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,169,110,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,169,110,.028) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:ndt-grid-drift 20s linear infinite;
+}
+/* scan-line shimmer */
+.why-ndt-scan{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(201,169,110,.03) 50%,
+    transparent 51%,
+    transparent 100%);
+  background-size:100% 8px;
+  animation:ndt-scan 4s linear infinite;
+  pointer-events:none;
+}
+/* moving light orb */
+.why-ndt-orb{
+  position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,169,110,.07) 0%, transparent 70%);
+  animation:ndt-orb-move 12s ease-in-out infinite;
+  pointer-events:none;z-index:1;
+}
+@keyframes ndt-bg-pulse{
+  0%{opacity:.7;transform:scale(1);}
+  100%{opacity:1;transform:scale(1.05);}
+}
+@keyframes ndt-grid-drift{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(60px,60px);}
+}
+@keyframes ndt-scan{
+  0%{transform:translateY(-100%);}
+  100%{transform:translateY(100vh);}
+}
+@keyframes ndt-orb-move{
+  0%{top:-100px;left:-100px;}
+  33%{top:20%;left:60%;}
+  66%{top:60%;left:10%;}
+  100%{top:-100px;left:-100px;}
+}
+
+/* content sits above video bg */
+.why-ndt-inner{
+  position:relative;z-index:2;
+  padding:100px 0;
+}
 .why-ndt-header{
-  display:grid;grid-template-columns:1fr 1fr;gap:70px;
-  align-items:end;margin-bottom:72px;
-}
-.why-ndt-img{
-  position:relative;overflow:hidden;
-  border:1px solid var(--border);
-  aspect-ratio:3/4;
-}
-.why-ndt-img img{width:100%;height:100%;object-fit:cover;opacity:.78;transition:opacity .5s,transform .6s var(--ease)}
-.why-ndt-img:hover img{opacity:.95;transform:scale(1.04)}
-.why-ndt-img::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to top,rgba(11,11,11,.55),transparent 50%);
+  max-width:780px;
+  margin-bottom:60px;
 }
 .why-ndt-copy .eyebrow{margin-bottom:18px}
 .why-ndt-copy .display{margin-bottom:14px}
 .why-ndt-copy .rule{margin:20px 0}
 .why-ndt-copy p{font-size:15px;line-height:1.88;color:var(--text);margin-bottom:14px}
 
-/* purposes checkerboard grid */
-.purposes-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:1px;background:var(--border2);
-  border:1px solid var(--border2);
-}
-.purpose-item{
-  background:var(--ink);
-  padding:18px 22px;
-  display:flex;gap:14px;align-items:flex-start;
-  font-size:13.5px;color:var(--text);line-height:1.58;
-  transition:background .22s,color .22s;
-}
-.purpose-item:hover{background:rgba(201,169,110,.07);color:var(--cream)}
-.purpose-item::before{
-  content:'◆';font-size:6px;color:var(--gold);
-  margin-top:5px;flex-shrink:0;
-}
 
-/* extended blockquote */
+/* purposes list — compact horizontal tags */
+.purposes-list{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.purpose-tag{
+  padding:9px 16px;
+  border:1px solid var(--border);
+  background:rgba(201,169,110,.04);
+  font-size:12.5px;color:var(--text);
+  cursor:default;
+  transition:background .22s,border-color .22s,color .22s,transform .22s;
+  display:flex;align-items:center;gap:8px;
+}
+.purpose-tag::before{content:'◆';font-size:5px;color:var(--gold);flex-shrink:0;}
+.purpose-tag:hover{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.4);color:var(--cream);transform:translateY(-2px);}
+
+/* extended blockquote — compact */
 .ndt-extended{
-  margin-top:52px;
-  background:var(--ink2);
+  margin-top:40px;
+  background:rgba(201,169,110,.04);
   border:1px solid var(--border);
   border-left:3px solid var(--gold);
-  padding:38px 44px;
-  font-size:14.5px;line-height:1.88;color:var(--text);
+  padding:28px 36px;
+  font-size:13.5px;line-height:1.82;color:var(--text);
   position:relative;
 }
 .ndt-extended::before{
   content:'"';
-  position:absolute;top:-14px;left:40px;
-  font-family:var(--ff-display);font-size:80px;color:var(--gold);
-  opacity:.22;line-height:1;
+  position:absolute;top:-14px;left:32px;
+  font-family:var(--ff-display);font-size:72px;color:var(--gold);
+  opacity:.2;line-height:1;
 }
+/* light mode overrides */
+body.light .why-ndt-video-bg{background:#e8edf5;}
+body.light .why-ndt-video-bg::before{
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(180,83,9,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(146,64,14,.05) 0%, transparent 55%);
+}
+body.light .purpose-tag{background:#fff;border-color:rgba(148,163,184,.3);}
+body.light .purpose-tag:hover{background:#f8fafc;border-color:var(--gold);}
+body.light .ndt-extended{background:#fff;border-color:rgba(148,163,184,.3);}
 
 /* ===================================================
    SECTION: WHEN DO YOU NEED NDT
@@ -594,29 +748,88 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
   background:var(--ink2);
   padding:130px 0;
 }
-.when-head{text-align:center;max-width:680px;margin:0 auto 72px}
+.when-head{text-align:center;max-width:680px;margin:0 auto 60px}
 .when-head .eyebrow{justify-content:center;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .when-head .eyebrow::before{display:none}
 .when-head .display{margin-bottom:14px}
 .when-head p{font-size:15px;color:var(--text);line-height:1.8}
+
+/* two-column: image left, cards right */
+.when-body{
+  display:grid;
+  grid-template-columns:1fr 1.6fr;
+  gap:52px;
+  align-items:start;
+}
+/* sticky image slot */
+.when-img-slot{
+  position:sticky;top:100px;
+}
+.when-img-frame{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--border);
+  aspect-ratio:3/4;
+  background:var(--ink3);
+}
+.when-img-frame img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.85;transition:opacity .5s,transform .6s var(--ease);
+  display:block;
+}
+.when-img-frame:hover img{opacity:1;transform:scale(1.04);}
+/* placeholder shown when no image is set */
+.when-img-placeholder{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;color:var(--text2);
+  border:2px dashed var(--border);
+}
+.when-img-placeholder svg{opacity:.4;}
+.when-img-placeholder span{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--text2);opacity:.6;
+}
+/* gold accent corner */
+.when-img-frame::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+
 .when-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 .when-card{
   background:var(--ink3);
   border:1px solid var(--border2);
-  padding:30px 28px;
+  padding:22px 20px;
   position:relative;overflow:hidden;
   transition:border-color .35s,transform .35s var(--ease);
 }
 .when-card:hover{border-color:rgba(201,169,110,.28);transform:translateY(-4px)}
-.when-num{
-  display:none;
-}
+.when-num{display:none;}
 .when-card p{
-  font-size:13.5px;color:var(--text);line-height:1.68;
+  font-size:13px;color:var(--text);line-height:1.65;
   position:relative;z-index:1;
+}
+/* crossfade slider */
+.when-slide{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+}
+.when-slide.active{opacity:.88;}
+/* light mode */
+body.light .when-img-frame{background:#f1f5f9;border-color:rgba(148,163,184,.3);}
+body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
+/* responsive */
+@media(max-width:900px){
+  .when-body{grid-template-columns:1fr;}
+  .when-img-slot{position:static;}
+  .when-img-frame{aspect-ratio:16/9;max-height:340px;}
 }
 
 /* ===================================================
@@ -800,8 +1013,8 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 }
 @media(max-width:768px){
   .topbar{display:flex}
-  .mob-menu{display:flex}
   .sidebar-summon{display:none}
+  .sidebar-overlay{z-index:1099;}
   .main-content.sidebar-pushed{margin-left:0;}
   #hero{padding-top:80px;padding-bottom:60px}
   .img-collage{height:300px}
@@ -813,13 +1026,14 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
   .footer-bottom{flex-direction:column;text-align:center}
   .ndt-extended{padding:28px 28px}
   .cta-box{padding:36px 28px}
-  .theme-toggle-btn{top:14px;right:14px;}
+  .theme-toggle-btn{top:14px;right:56px;}
 }
 </style>
 </head>
 <body>
 
 <!-- ════ MOBILE TOPBAR ════ -->
+<div class="site-wrapper">
 <div class="topbar" id="topbar">
   <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
   <button class="hamburger" id="burger" aria-label="Menu">
@@ -931,7 +1145,13 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 
       <!-- Text -->
       <div class="about-text">
-        <p class="r d2" style="margin-top:0;font-size:16px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Our Main Areas of Business</p>
+        <span class="eyebrow r">Who We Are</span>
+        <h2 class="display r" style="margin-top:14px">Precision Testing. <em>Trusted Results.</em></h2>
+        <div class="rule r"></div>
+        <p class="r">NDT East Africa Limited offers Non Destructive Testing services on Concrete and Steel Structures across East Africa and beyond. Based in Nairobi, <strong>Kenya</strong>, our team of Engineers and Technicians brings over a decade of hands-on construction industry experience to every project.</p>
+        <p class="r d1">We advise clients on the most suitable Non-Destructive Test depending on their unique structural needs — combining international best practice with deep local knowledge.</p>
+
+        <p class="r d2" style="margin-top:28px;font-size:16px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Our Main Areas of Business</p>
         <ul class="biz-list r d2">
           <li class="biz-item">To estimate the in-situ compressive strength of concrete.</li>
           <li class="biz-item">To identify/map reinforcement profile on slabs, beams, columns and other structural elements.</li>
@@ -953,9 +1173,136 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
   </div>
 </section>
 
+<!-- ═══════════════════ WHY NON-DESTRUCTIVE TESTS ═══════════════════ -->
+<section id="why-ndt">
+  <!-- animated motion background -->
+  <div class="why-ndt-video-bg">
+    <div class="why-ndt-scan"></div>
+    <div class="why-ndt-orb"></div>
+  </div>
+
+  <div class="why-ndt-inner">
+  <div class="wrap">
+    <div class="why-ndt-header">
+
+      <div class="why-ndt-copy">
+        <span class="eyebrow r">The Science Behind It</span>
+        <h2 class="display r" style="margin-top:14px">Why <em>Non-Destructive</em> Tests</h2>
+        <div class="rule r"></div>
+        <p class="r">It is important to verify whether concrete structures have achieved their design objectives after the concrete has hardened. It is preferred that any test conducted on hardened concrete should result in minimal or no damage to the structure.</p>
+        <p class="r d1">NDT techniques are increasingly being adopted on concrete structures — giving engineers a complete picture of structural health without lifting a hammer.</p>
+      </div>
+    </div>
+
+    <div class="purposes-list r">
+      <div class="purpose-tag">Estimate in-situ compressive strength</div>
+      <div class="purpose-tag">Map reinforcement profiles</div>
+      <div class="purpose-tag">Measure concrete cover &amp; re-bar diameter</div>
+      <div class="purpose-tag">Assess uniformity &amp; homogeneity</div>
+      <div class="purpose-tag">Check quality vs. standard requirements</div>
+      <div class="purpose-tag">Identify areas of lower integrity</div>
+      <div class="purpose-tag">Detect cracks, voids &amp; imperfections</div>
+      <div class="purpose-tag">Monitor structural changes over time</div>
+      <div class="purpose-tag">Assess corrosion on prestressed steel</div>
+      <div class="purpose-tag">Test chloride, sulphate &amp; alkali content</div>
+      <div class="purpose-tag">Measure Elastic Modulus</div>
+      <div class="purpose-tag">Inspect grouting in prestressing ducts</div>
+    </div>
+
+    <div class="ndt-extended r">
+      NDT Tests range from completely non-destructive — where there is no damage to the concrete — through those where the surface is slightly affected, to partially destructive tests such as core tests and pull-off tests where the surface has to be repaired after. Non-destructive testing can be applied to both old and new structures and used as a cost-effective preliminary to subsequent coring.
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHEN DO YOU NEED NDT ═══════════════════ -->
+<section id="when-ndt">
+  <div class="wrap">
+    <div class="when-head r">
+      <span class="eyebrow">Application Scenarios</span>
+      <h2 class="display" style="margin-top:16px">When Do You Need <em>NDT</em> on Concrete Structures</h2>
+      <p style="margin-top:16px">Typical situations when Non-Destructive Testing of Concrete may be useful include:</p>
+    </div>
+
+    <div class="when-body">
+
+      <!-- ── IMAGE CROSSFADE SLOT ── -->
+      <div class="when-img-slot r">
+        <div class="when-img-frame" id="when-img-frame">
+          <img class="when-slide active"
+               src="https://www.ndt-ea.com/wp-content/uploads/2025/08/about-whyP.jpg"
+               alt="NDT on concrete structures"/>
+          <img class="when-slide"
+               src="https://www.ndt-ea.com/wp-content/uploads/2025/08/about-whyP2.jpg"
+               alt="NDT concrete inspection"/>
+        </div>
+      </div>
+
+      <!-- ── CARDS GRID ── -->
+      <div class="when-grid">
+        <div class="when-card r">
+          <div class="when-num">01</div>
+          <p>Quality control of pre-cast units or construction in situ.</p>
+        </div>
+        <div class="when-card r d1">
+          <div class="when-num">02</div>
+          <p>Removing uncertainties about the acceptability of the material supplied owing to apparent non-compliance with specification.</p>
+        </div>
+        <div class="when-card r d2">
+          <div class="when-num">03</div>
+          <p>Confirming or negating doubt concerning the workmanship involved in batching, mixing, placing, compacting or curing of concrete.</p>
+        </div>
+        <div class="when-card r">
+          <div class="when-num">04</div>
+          <p>Monitoring of strength development in relation to formwork removal, cessation of curing, prestressing, load application or similar purpose.</p>
+        </div>
+        <div class="when-card r d1">
+          <div class="when-num">05</div>
+          <p>Location and determination of the extent of cracks, voids, honeycombing and similar defects within a concrete structure.</p>
+        </div>
+        <div class="when-card r d2">
+          <div class="when-num">06</div>
+          <p>Determining the concrete uniformity, possibly preliminary to core cutting, load testing or other more expensive or disruptive tests.</p>
+        </div>
+        <div class="when-card r">
+          <div class="when-num">07</div>
+          <p>Determining the position, quantity or condition of reinforcement.</p>
+        </div>
+        <div class="when-card r d1">
+          <div class="when-num">08</div>
+          <p>Increasing the confidence level of a smaller number of destructive tests.</p>
+        </div>
+        <div class="when-card r d2">
+          <div class="when-num">09</div>
+          <p>Determining the extent of concrete variability in order to help in the selection of sample locations representative of the quality to be assessed.</p>
+        </div>
+        <div class="when-card r">
+          <div class="when-num">10</div>
+          <p>Confirming or locating suspected deterioration of concrete resulting from overloading, fatigue, external or internal chemical attack or change, fire, explosion, environmental effects.</p>
+        </div>
+        <div class="when-card r d1">
+          <div class="when-num">11</div>
+          <p>Assessing the potential durability of the concrete.</p>
+        </div>
+        <div class="when-card r d2">
+          <div class="when-num">12</div>
+          <p>Monitoring long term changes in concrete properties and providing information for any proposed change of use of a structure for insurance or change of ownership.</p>
+        </div>
+      </div>
+
+    </div><!-- /.when-body -->
+  </div>
+</section>
+
 <!-- ═══════════════════ WHY CHOOSE US ═══════════════════ -->
 <section id="why-us">
+  <div class="why-us-video-bg">
+    <div class="why-us-orb"></div>
+  </div>
   <div class="why-ghost">NDT</div>
+
+  <div class="why-us-inner">
   <div class="wrap">
     <div class="why-grid">
 
@@ -969,129 +1316,56 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
       <div class="values-wrap">
         <span class="eyebrow values-eyebrow r">Our Core Values</span>
         <p class="values-subtitle r d1">Delivering trusted, value-driven insights with professionalism and care.</p>
-        <div class="values-grid">
-          <div class="val-card r">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <div class="val-name">Professionalism</div>
-            <div class="val-desc">Highest standards in every engagement, delivering expert-level service at all times.</div>
-          </div>
-          <div class="val-card r d1">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
-            <div class="val-name">Integrity</div>
-            <div class="val-desc">Complete transparency and honesty in all our client relationships and findings.</div>
-          </div>
-          <div class="val-card r d2">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
-            <div class="val-name">Value Based</div>
-            <div class="val-desc">Solutions designed to give maximum return on investment while maintaining quality.</div>
-          </div>
-          <div class="val-card r d3">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <div class="val-name">Customer Centric</div>
-            <div class="val-desc">Every decision starts with understanding and meeting the specific needs of our clients.</div>
+
+        <!-- Carousel -->
+        <div class="val-carousel r d2">
+          <div class="val-track" id="val-track">
+
+            <div class="val-card">
+              <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <div class="val-name">Professionalism</div>
+              <div class="val-desc">Highest standards in every engagement, delivering expert-level service at all times. Our certified team follows international NDT protocols on every project.</div>
+            </div>
+
+            <div class="val-card">
+              <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+              <div class="val-name">Integrity</div>
+              <div class="val-desc">Complete transparency and honesty in all our client relationships and findings. We report what we find — always, without compromise.</div>
+            </div>
+
+            <div class="val-card">
+              <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+              <div class="val-name">Value Based</div>
+              <div class="val-desc">Solutions designed to give maximum return on investment while maintaining quality. We match the right test to your budget without cutting corners.</div>
+            </div>
+
+            <div class="val-card">
+              <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div class="val-name">Customer Centric</div>
+              <div class="val-desc">Every decision starts with understanding and meeting the specific needs of our clients. We listen first, then engineer the right solution.</div>
+            </div>
+
           </div>
         </div>
+
+        <!-- dots + arrows -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;">
+          <div class="val-dots" id="val-dots">
+            <button class="val-dot active" data-index="0"></button>
+            <button class="val-dot" data-index="1"></button>
+            <button class="val-dot" data-index="2"></button>
+            <button class="val-dot" data-index="3"></button>
+          </div>
+          <div class="val-nav">
+            <button class="val-arrow" id="val-prev" aria-label="Previous">&#8592;</button>
+            <button class="val-arrow" id="val-next" aria-label="Next">&#8594;</button>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </div>
-</section>
-
-<!-- ═══════════════════ WHY NON-DESTRUCTIVE TESTS ═══════════════════ -->
-<section id="why-ndt">
-  <div class="wrap">
-    <div class="why-ndt-header">
-      <div class="why-ndt-img r">
-        <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_7un47j7un47j7un4-1-1-scaled-e1754196039744-749x1024.webp" alt="Why Non-Destructive Tests"/>
-      </div>
-      <div class="why-ndt-copy">
-        <span class="eyebrow r">The Science Behind It</span>
-        <h2 class="display r" style="margin-top:14px">Why <em>Non-Destructive</em> Tests</h2>
-        <div class="rule r"></div>
-        <p class="r">It is important to verify whether concrete structures have achieved their design objectives after the concrete has hardened. It is preferred that any test conducted on hardened concrete should result in minimal or no damage to the structure.</p>
-        <p class="r d1">It is important to examine hardened concrete structures for their suitability for intended use. In such cases, Non-Destructive Test methods are used. NDT techniques are increasingly being adopted on concrete structures for the following purposes:</p>
-      </div>
-    </div>
-
-    <div class="purposes-grid r">
-      <div class="purpose-item">To estimate the in-situ compressive strength of concrete.</div>
-      <div class="purpose-item">To identify/map reinforcement profile on slabs, beams, columns and other structural elements.</div>
-      <div class="purpose-item">To measure concrete cover, re-bar diameter, spacing etc.</div>
-      <div class="purpose-item">To estimate the uniformity and homogeneity of concrete.</div>
-      <div class="purpose-item">To estimate the quality of concrete in relation to standard requirements.</div>
-      <div class="purpose-item">To identify areas of lower integrity in comparison to other parts.</div>
-      <div class="purpose-item">To detect presence of cracks, voids and other imperfections.</div>
-      <div class="purpose-item">To monitor changes in the structure of the concrete which may occur with time.</div>
-      <div class="purpose-item">To establish the extent of corrosion on prestressed/reinforcement steel.</div>
-      <div class="purpose-item">To establish chloride, sulphate, alkali contents or degree of carbonation.</div>
-      <div class="purpose-item">To measure Elastic Modulus.</div>
-      <div class="purpose-item">To establish the condition of grouting in prestressing cable ducts.</div>
-    </div>
-
-    <div class="ndt-extended r">
-      NDT Tests range from the completely non-destructive, where there is no damage to the concrete, through those where the concrete surface is slightly damaged, to partially destructive tests, such as core tests and pullout and pull-off tests, where the surface has to be repaired after the test. Non-destructive testing can be applied to both old and new structures. For new structures, the principal applications are likely to be for quality control or the resolution of doubts about the quality of materials or construction. The testing of existing structures is usually related to an assessment of structural integrity or adequacy. In either case, if destructive testing alone is used — for instance, by removing cores for compression testing — the cost may only allow a relatively small number of tests to be carried out on a large structure which may be misleading. Non-destructive testing can be used in those situations as a preliminary to subsequent coring.
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ WHEN DO YOU NEED NDT ═══════════════════ -->
-<section id="when-ndt">
-  <div class="wrap">
-    <div class="when-head r">
-      <span class="eyebrow">Application Scenarios</span>
-      <h2 class="display" style="margin-top:16px">When Do You Need <em>NDT</em> on Concrete Structures</h2>
-      <p style="margin-top:16px">Typical situations when Non-Destructive Testing of Concrete may be useful include:</p>
-    </div>
-    <div class="when-grid">
-      <div class="when-card r">
-        <div class="when-num">01</div>
-        <p>Quality control of pre-cast units or construction in situ.</p>
-      </div>
-      <div class="when-card r d1">
-        <div class="when-num">02</div>
-        <p>Removing uncertainties about the acceptability of the material supplied owing to apparent non-compliance with specification.</p>
-      </div>
-      <div class="when-card r d2">
-        <div class="when-num">03</div>
-        <p>Confirming or negating doubt concerning the workmanship involved in batching, mixing, placing, compacting or curing of concrete.</p>
-      </div>
-      <div class="when-card r">
-        <div class="when-num">04</div>
-        <p>Monitoring of strength development in relation to formwork removal, cessation of curing, prestressing, load application or similar purpose.</p>
-      </div>
-      <div class="when-card r d1">
-        <div class="when-num">05</div>
-        <p>Location and determination of the extent of cracks, voids, honeycombing and similar defects within a concrete structure.</p>
-      </div>
-      <div class="when-card r d2">
-        <div class="when-num">06</div>
-        <p>Determining the concrete uniformity, possibly preliminary to core cutting, load testing or other more expensive or disruptive tests.</p>
-      </div>
-      <div class="when-card r">
-        <div class="when-num">07</div>
-        <p>Determining the position, quantity or condition of reinforcement.</p>
-      </div>
-      <div class="when-card r d1">
-        <div class="when-num">08</div>
-        <p>Increasing the confidence level of a smaller number of destructive tests.</p>
-      </div>
-      <div class="when-card r d2">
-        <div class="when-num">09</div>
-        <p>Determining the extent of concrete variability in order to help in the selection of sample locations representative of the quality to be assessed.</p>
-      </div>
-      <div class="when-card r">
-        <div class="when-num">10</div>
-        <p>Confirming or locating suspected deterioration of concrete resulting from overloading, fatigue, external or internal chemical attack or change, fire, explosion, environmental effects.</p>
-      </div>
-      <div class="when-card r d1">
-        <div class="when-num">11</div>
-        <p>Assessing the potential durability of the concrete.</p>
-      </div>
-      <div class="when-card r d2">
-        <div class="when-num">12</div>
-        <p>Monitoring long term changes in concrete properties and providing information for any proposed change of use of a structure for insurance or change of ownership.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1119,7 +1393,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
           <div class="ci-icon">✉</div>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val"><a href="/cdn-cgi/l/email-protection#bad3d4dcd5fad4dece97dfdb94d9d5d7"><span class="__cf_email__" data-cfemail="6c05020a032c02081841090d420f0301">[email&#160;protected]</span></a></div>
+            <div class="ci-val"><a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a></div>
           </div>
         </div>
         <div class="ci">
@@ -1373,6 +1647,8 @@ function closeSidebar() {
   summon.classList.remove('sidebar-open');
   if (mainContent) mainContent.classList.remove('sidebar-pushed');
   clearTimeout(autoCloseTimer);
+  const b = document.getElementById('burger');
+  if (b) b.classList.remove('open');
 }
 function scheduleClose() {
   clearTimeout(autoCloseTimer);
@@ -1381,7 +1657,7 @@ function scheduleClose() {
   }, 3000);
 }
 
-// Click toggle
+// Click toggle (desktop summon button)
 summon.addEventListener('click', () => sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
 
 // Cursor inside sidebar or summon — cancel pending close
@@ -1397,26 +1673,11 @@ sidebar.addEventListener('mouseleave', () => {
 overlay.addEventListener('click', closeSidebar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
-// ── MOBILE HAMBURGER ──
-const burger  = document.getElementById('burger');
-const mobMenu = document.getElementById('mob-menu');
-
-if (burger && mobMenu) {
+// ── MOBILE HAMBURGER — opens sidebar on mobile ──
+const burger = document.getElementById('burger');
+if (burger) {
   burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    const isOpen = mobMenu.style.display === 'flex';
-    mobMenu.style.display        = isOpen ? 'none'  : 'flex';
-    mobMenu.style.opacity        = isOpen ? '0'     : '1';
-    mobMenu.style.pointerEvents  = isOpen ? 'none'  : 'all';
-  });
-  // Close mobile menu when any link is tapped
-  mobMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobMenu.style.display       = 'none';
-      mobMenu.style.opacity       = '0';
-      mobMenu.style.pointerEvents = 'none';
-      burger.classList.remove('open');
-    });
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
   });
 }
 
@@ -1435,7 +1696,12 @@ if (localStorage.getItem('ndt-theme') === 'light') {
   document.getElementById('toggle-thumb').textContent = '🌙';
 }
 
-// ── FAQ ACCORDION ──
+// ── SIDEBAR NAV LINKS — close sidebar on tap (mobile) ──
+document.querySelectorAll('.sidebar-nav a, .contact-btn').forEach(link => {
+  link.addEventListener('click', () => {
+    closeSidebar();
+  });
+});
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => {
     const item   = q.closest('.faq-item');
@@ -1446,7 +1712,63 @@ document.querySelectorAll('.faq-q').forEach(q => {
 });
 
 
-// ── SCROLL REVEAL ──
+// ── WHEN-NDT IMAGE CROSSFADE ──
+(function(){
+  const slides = document.querySelectorAll('#when-img-frame .when-slide');
+  if(!slides.length) return;
+  let current = 0;
+  setInterval(function(){
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 2000);
+})();
+
+
+(function(){
+  const track   = document.getElementById('val-track');
+  const dots    = document.querySelectorAll('#val-dots .val-dot');
+  const prev    = document.getElementById('val-prev');
+  const next    = document.getElementById('val-next');
+  if(!track) return;
+
+  const cards   = track.querySelectorAll('.val-card');
+  let current   = 0;
+  let autoTimer = null;
+
+  function goTo(idx){
+    current = (idx + cards.length) % cards.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i === current));
+  }
+
+  function startAuto(){
+    stopAuto();
+    autoTimer = setInterval(() => goTo(current + 1), 4000);
+  }
+  function stopAuto(){ clearInterval(autoTimer); }
+
+  prev.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+  next.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); startAuto(); }));
+
+  // Touch / swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; stopAuto(); }, {passive:true});
+  track.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    startAuto();
+  }, {passive:true});
+
+  // Pause on hover
+  track.closest('.val-carousel').addEventListener('mouseenter', stopAuto);
+  track.closest('.val-carousel').addEventListener('mouseleave', startAuto);
+
+  startAuto();
+})();
+
+
 const revealEls = document.querySelectorAll('.r, .reveal');
 const ro = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1457,6 +1779,9 @@ const ro = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 revealEls.forEach(el => ro.observe(el));
+
 </script>
+</div><!-- /.main-content -->
+</div><!-- /.site-wrapper -->
 </body>
 </html>

@@ -140,10 +140,10 @@ body.light .topbar{background:rgba(255,255,255,.97);border-bottom-color:var(--bo
 
 /* ── MOBILE MENU ── */
 .mob-menu{
-  display:none;position:fixed;inset:0;
+  display:none;position:fixed;inset:0;top:62px;
   background:rgba(10,10,10,.99);
   flex-direction:column;align-items:center;justify-content:center;
-  gap:20px;z-index:999;
+  gap:20px;z-index:999;overflow-y:auto;
 }
 body.light .mob-menu{background:rgba(255,255,255,.99)}
 .mob-menu a{
@@ -658,18 +658,98 @@ body.light .footer-bottom p{color:#6b7280}
   .tl-year-head{justify-content:flex-start;padding-left:14px}
 }
 @media(max-width:768px){
+  /* ── Chrome / UI ── */
   .topbar{display:flex}
-  .mob-menu{display:flex}
+  .mob-menu{display:none} /* JS toggles to flex */
   .sidebar-summon{display:none}
   .main-content.sidebar-pushed{margin-left:0}
-  .theme-toggle-btn{top:14px;right:14px}
-  #hero{padding-top:100px;padding-bottom:80px;min-height:80vh}
-  .hero-meta{gap:24px}
-  .wrap{padding:0 20px}
-  #timeline{padding:72px 0 90px}
-  .footer-grid{grid-template-columns:1fr}
+
+  /* ── Theme toggle: tuck below topbar, away from hamburger ── */
+  .theme-toggle-btn{
+    top:auto;bottom:16px;right:16px;
+    box-shadow:0 4px 16px rgba(0,0,0,.45);
+  }
+  .toggle-label{display:none}
+
+  /* ── Hero: clear topbar + comfortable spacing ── */
+  #hero{
+    padding-top:86px;   /* 62 px topbar + 24 px breathing room */
+    padding-bottom:56px;
+    min-height:auto;
+  }
+  .hero-title{font-size:clamp(30px,8vw,48px)}
+  .hero-desc{font-size:14px;max-width:100%}
+  .hero-meta{gap:20px;flex-wrap:wrap}
+  .hero-meta-num{font-size:28px}
+
+  /* ── Wrap ── */
+  .wrap{padding:0 16px}
+
+  /* ── TIMELINE: single-column, left-rail spine ── */
+  #timeline{padding:56px 0 72px}
+
+  /* Move spine to left edge */
+  .tl-spine{left:20px;transform:none}
+
+  /* Collapse every row to a single column with the node on the left rail */
+  .tl-row{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    grid-template-rows:auto;
+    align-items:start;
+    margin-bottom:4px;
+  }
+
+  /* node always in column 1 */
+  .tl-row.left  .node-slot,
+  .tl-row.right .node-slot{
+    grid-column:1;grid-row:1;
+    justify-content:center;padding-top:22px;
+  }
+
+  /* card always in column 2 */
+  .tl-row.left  .card-slot,
+  .tl-row.right .card-slot{
+    grid-column:2;grid-row:1;
+    padding:0 0 0 12px;
+    display:block;
+  }
+
+  /* hide the empty void column entirely */
+  .tl-row.left  .void,
+  .tl-row.right .void{display:none}
+
+  /* connectors not needed in single-column mode */
+  .proj-card::before{display:none !important}
+
+  /* cards take full width */
+  .proj-card{max-width:100%;padding:22px 20px}
+
+  /* year headers: left-align, offset to match card column */
+  .tl-year-head{justify-content:flex-start;padding-left:52px;margin:48px 0 8px}
+  .tl-year-pill{padding:10px 20px}
+  .tl-year-pill::before,.tl-year-pill::after{display:none}
+  .year-num{font-size:24px}
+
+  /* end badge */
+  .tl-end{margin-top:48px}
+  .end-pill{padding:16px 28px}
+
+  /* ── CTA ── */
+  #cta{padding:72px 0}
+  .cta-box{padding:32px 20px}
+
+  /* ── Footer ── */
+  .footer-grid{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;text-align:center}
-  .cta-box{padding:36px 28px}
+  #footer{padding:48px 0 28px}
+}
+
+/* Extra-small phones */
+@media(max-width:400px){
+  .hero-title{font-size:28px}
+  .proj-card{padding:18px 16px}
+  .card-client{font-size:15px}
 }
 </style>
 </head>
@@ -1021,7 +1101,7 @@ body.light .footer-bottom p{color:#6b7280}
           <div class="ci-icon">✉</div>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val"><a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a></div>
+            <div class="ci-val"><a href="/cdn-cgi/l/email-protection#b9d0d7dfd6f9d7ddcd94dcd897dad6d4"><span class="__cf_email__" data-cfemail="9df4f3fbf2ddf3f9e9b0f8fcb3fef2f0">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="ci">
@@ -1080,7 +1160,7 @@ body.light .footer-bottom p{color:#6b7280}
           Water Sys Plaza<br/>
           Biashara Street, Nairobi<br/><br/>
           <a href="tel:+254721414663">+254 721 414 663</a><br/><br/>
-          <a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a>
+          <a href="/cdn-cgi/l/email-protection#c4adaaa2ab84aaa0b0e9a1a5eaa7aba9"><span class="__cf_email__" data-cfemail="30595e565f705e54441d55511e535f5d">[email&#160;protected]</span></a>
         </address>
       </div>
     </div>
@@ -1094,7 +1174,7 @@ body.light .footer-bottom p{color:#6b7280}
 </div><!-- /main-content -->
 
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── SIDEBAR ──
 const summon      = document.getElementById('sidebar-summon');
 const sidebar     = document.getElementById('sidebar');
@@ -1201,18 +1281,21 @@ function animateCount(el,target,dur){
   let n=0;
   const step=Math.ceil(target/(dur/16));
   const t=setInterval(()=>{
-    n+=step;if(n>=target){n=target;clearInterval(t);}
+    n+=step;
+    if(n>=target){ n=target; clearInterval(t); }
     el.textContent=n+'+';
   },16);
 }
-const heroObs=new IntersectionObserver((entries)=>{
+const cObs=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
-    if(e.isIntersecting&&!counted){counted=true;setTimeout(()=>animateCount(countEl,13,900),900);}
+    if(e.isIntersecting && !counted){
+      counted=true;
+      animateCount(countEl,50,1800);
+      cObs.unobserve(e.target);
+    }
   });
-},{threshold:0.4});
-heroObs.observe(document.getElementById('hero'));
-
-
+},{threshold:0.3});
+if(countEl) cObs.observe(countEl);
 </script>
 </body>
 </html>

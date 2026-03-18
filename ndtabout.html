@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>About Us — NDT East Africa</title>
-<link rel="icon" href="https://www.ndt-ea.com/wp-content/uploads/2025/08/cropped-ndt-ea-site-logo-32x32.webp"/>
+<link rel="icon" href="imgi_1_logo-new1-removebg-preview.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -344,9 +344,20 @@ body::after{
 .s-social:hover{border-color:var(--gold);color:var(--gold);}
 .sidebar-tagline{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,169,110,0.35);line-height:1.7;}
 
-/* ===================================================
-   THEME TOGGLE — exact match to origin site
-=================================================== */
+/* sidebar theme toggle (desktop) */
+.sidebar-theme-toggle{
+  display:flex;align-items:center;gap:8px;
+  margin-top:14px;width:100%;
+  background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.2);
+  border-radius:50px;padding:6px 12px 6px 7px;
+  cursor:pointer;transition:background .3s,border-color .3s;
+}
+.sidebar-theme-toggle:hover{background:rgba(201,169,110,.12);border-color:var(--gold);}
+.sidebar-theme-toggle span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text2);}
+body.light .sidebar-theme-toggle{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.12);}
+body.light .sidebar-theme-toggle span{color:#6b7280;}
+
+
 .theme-toggle-btn{
   position:fixed;top:20px;right:20px;z-index:1200;
   display:flex;align-items:center;gap:5px;
@@ -373,6 +384,17 @@ body.light .toggle-thumb{transform:translateX(12px);background:#ffffff;}
 /* Mobile topbar */
 .topbar{display:none;position:fixed;top:0;left:0;right:0;height:60px;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(201,169,110,0.12);align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;}
 .topbar img,.topbar .logo-img{height:34px;width:auto;object-fit:contain;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+/* theme toggle inside topbar on mobile */
+.topbar-theme{
+  position:static !important;
+  top:auto !important;right:auto !important;
+  box-shadow:none !important;
+  background:rgba(255,255,255,0.08) !important;
+  border-color:rgba(201,169,110,0.3) !important;
+  padding:4px 8px 4px 5px !important;
+}
+body.light .topbar-theme{background:rgba(0,0,0,0.06) !important;border-color:rgba(0,0,0,0.15) !important;}
 .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform 0.3s,opacity 0.3s;}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
@@ -1016,6 +1038,8 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
   .sidebar-summon{display:none}
   .sidebar-overlay{z-index:1099;}
   .main-content.sidebar-pushed{margin-left:0;}
+  /* hide the desktop floating toggle — topbar has its own */
+  .theme-toggle-btn:not(.topbar-theme){display:none;}
   #hero{padding-top:80px;padding-bottom:60px}
   .img-collage{height:300px}
   .purposes-grid{grid-template-columns:1fr}
@@ -1026,7 +1050,6 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
   .footer-bottom{flex-direction:column;text-align:center}
   .ndt-extended{padding:28px 28px}
   .cta-box{padding:36px 28px}
-  .theme-toggle-btn{top:14px;right:56px;}
 }
 </style>
 </head>
@@ -1035,10 +1058,16 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
 <!-- ════ MOBILE TOPBAR ════ -->
 <div class="site-wrapper">
 <div class="topbar" id="topbar">
-  <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
-  <button class="hamburger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <img class="logo-img" src="imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+  <div class="topbar-right">
+    <button class="theme-toggle-btn topbar-theme" id="theme-toggle" aria-label="Toggle theme">
+      <div class="toggle-track"><div class="toggle-thumb" id="toggle-thumb">&#9728;</div></div>
+      <span class="toggle-label" id="toggle-label">Light Mode</span>
+    </button>
+    <button class="hamburger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </div>
 
 <!-- ════ MOBILE MENU ════ -->
@@ -1071,7 +1100,7 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
 <!-- ════ SIDEBAR ════ -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+    <img class="logo-img" src="imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
   </div>
   <nav class="sidebar-nav" id="main-nav">
     <span class="nav-section">Main Menu</span>
@@ -1100,19 +1129,18 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
       </a>
     </div>
     <div class="sidebar-tagline">PRECISION &middot; INTEGRITY<br>EXCELLENCE</div>
+    <!-- desktop theme toggle lives here in sidebar -->
+    <button class="sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <div class="toggle-track"><div class="toggle-thumb" id="toggle-thumb">&#9728;</div></div>
+      <span id="toggle-label">Light Mode</span>
+    </button>
   </div>
 </aside>
-
-<!-- ════ THEME TOGGLE ════ -->
-<button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-  <div class="toggle-track"><div class="toggle-thumb" id="toggle-thumb">&#9728;</div></div>
-  <span class="toggle-label" id="toggle-label">Light Mode</span>
-</button>
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <div class="main-content" id="main-content">
 <section id="hero">
-  <img class="hero-bg" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_v426euv426euv426.webp" alt="NDT East Africa About"/>
+  <img class="hero-bg" src="Gemini_Generated_Image_v426euv426euv426.webp" alt="NDT East Africa About"/>
   <div class="hero-veil"></div>
 
   <div class="wrap hero-content">
@@ -1131,10 +1159,10 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
       <!-- Image collage -->
       <div class="img-collage r">
         <div class="img-a">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_v426euv426euv426.webp" alt="NDT inspection on site"/>
+          <img src="Gemini_Generated_Image_v426euv426euv426.webp" alt="NDT inspection on site"/>
         </div>
         <div class="img-b">
-          <img src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_srg6ezsrg6ezsrg6-819x1024.webp" alt="NDT engineer"/>
+          <img src="Gemini_Generated_Image_srg6ezsrg6ezsrg6-819x1024.webp" alt="NDT engineer"/>
         </div>
         <div class="collage-badge">
           <div class="badge-num">10+</div>
@@ -1231,10 +1259,10 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
       <div class="when-img-slot r">
         <div class="when-img-frame" id="when-img-frame">
           <img class="when-slide active"
-               src="https://www.ndt-ea.com/wp-content/uploads/2025/08/about-whyP.jpg"
+               src="about-whyP.jpg"
                alt="NDT on concrete structures"/>
           <img class="when-slide"
-               src="https://www.ndt-ea.com/wp-content/uploads/2025/08/about-whyP2.jpg"
+               src="about-whyP2.jpg"
                alt="NDT concrete inspection"/>
         </div>
       </div>
@@ -1577,7 +1605,7 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+        <img src="imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
         <p>NDT East Africa Limited offers Non Destructive Test services on Concrete and Steel Structures in East Africa and beyond. We are based in Nairobi, Kenya.</p>
         <div class="socials">
           <a href="https://www.facebook.com/ndteastafrica" target="_blank" rel="noopener" class="soc" aria-label="Facebook">
@@ -1681,20 +1709,23 @@ if (burger) {
   });
 }
 
-// ── THEME TOGGLE ──
-function toggleTheme() {
-  const isLight = document.body.classList.toggle('light');
-  document.getElementById('toggle-label').textContent = isLight ? 'Dark Mode' : 'Light Mode';
-  document.getElementById('toggle-thumb').textContent = isLight ? '🌙' : '☀';
+// ── THEME TOGGLE — syncs topbar (mobile) + sidebar (desktop) ──
+function applyTheme(isLight) {
+  document.body.classList.toggle('light', isLight);
+  const label = isLight ? 'Dark Mode' : 'Light Mode';
+  const thumb = isLight ? '🌙' : '☀';
+  document.querySelectorAll('#toggle-label').forEach(el => el.textContent = label);
+  document.querySelectorAll('#toggle-thumb').forEach(el => el.textContent = thumb);
   localStorage.setItem('ndt-theme', isLight ? 'light' : 'dark');
 }
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-// Restore saved preference on load
-if (localStorage.getItem('ndt-theme') === 'light') {
-  document.body.classList.add('light');
-  document.getElementById('toggle-label').textContent = 'Dark Mode';
-  document.getElementById('toggle-thumb').textContent = '🌙';
-}
+function toggleTheme() { applyTheme(!document.body.classList.contains('light')); }
+
+// wire both toggle buttons (topbar + sidebar share id="theme-toggle")
+document.querySelectorAll('#theme-toggle').forEach(btn =>
+  btn.addEventListener('click', toggleTheme)
+);
+// restore saved preference
+if (localStorage.getItem('ndt-theme') === 'light') applyTheme(true);
 
 // ── SIDEBAR NAV LINKS — close sidebar on tap (mobile) ──
 document.querySelectorAll('.sidebar-nav a, .contact-btn').forEach(link => {

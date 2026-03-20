@@ -382,7 +382,7 @@ body.light .toggle-thumb{transform:translateX(12px);background:#ffffff;}
 #header{display:none !important;}
 
 /* Mobile topbar */
-.topbar{display:none;position:fixed;top:0;left:0;right:0;height:60px;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(201,169,110,0.12);align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;}
+.topbar{display:none;position:fixed;top:0;left:0;right:0;height:60px;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(201,169,110,0.12);align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;display:block;}
 .topbar img,.topbar .logo-img{height:34px;width:auto;object-fit:contain;}
 .topbar-left{display:flex;align-items:center;gap:12px;}
 .topbar-right{display:flex;align-items:center;gap:12px;}
@@ -1037,6 +1037,7 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
 @media(max-width:768px){
   .topbar{display:flex}
   .sidebar-summon{display:none}
+  .topbar img,.topbar .logo-img{height:34px;width:auto;object-fit:contain;display:block;}
   .sidebar-overlay{z-index:1099;}
   .main-content.sidebar-pushed{margin-left:0;}
   /* hide the desktop floating toggle — topbar has its own */

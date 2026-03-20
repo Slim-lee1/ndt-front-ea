@@ -384,6 +384,7 @@ body.light .toggle-thumb{transform:translateX(12px);background:#ffffff;}
 /* Mobile topbar */
 .topbar{display:none;position:fixed;top:0;left:0;right:0;height:60px;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(201,169,110,0.12);align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;}
 .topbar img,.topbar .logo-img{height:34px;width:auto;object-fit:contain;}
+.topbar-left{display:flex;align-items:center;gap:12px;}
 .topbar-right{display:flex;align-items:center;gap:12px;}
 /* theme toggle inside topbar on mobile */
 .topbar-theme{
@@ -1056,16 +1057,17 @@ body.light .when-img-placeholder{border-color:rgba(148,163,184,.3);}
 <body>
 
 <!-- ════ MOBILE TOPBAR ════ -->
-<div class="site-wrapper">
 <div class="topbar" id="topbar">
-  <img class="logo-img" src="imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+  <div class="topbar-left">
+    <button class="hamburger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <img class="logo-img" src="imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+  </div>
   <div class="topbar-right">
     <button class="theme-toggle-btn topbar-theme" id="theme-toggle" aria-label="Toggle theme">
       <div class="toggle-track"><div class="toggle-thumb" id="toggle-thumb">&#9728;</div></div>
       <span class="toggle-label" id="toggle-label">Light Mode</span>
-    </button>
-    <button class="hamburger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
     </button>
   </div>
 </div>

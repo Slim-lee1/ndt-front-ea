@@ -134,23 +134,29 @@ body.light .footer-brand p{color:#6b7280;}
 /* Dividers */
 body.light .section-divider{background:rgba(148,163,184,.3);}
 
-/* Sidebar — services-style clean white */
-body.light .sidebar{background:#ffffff;border-right-color:rgba(0,0,0,0.08);box-shadow:2px 0 12px rgba(15,23,42,0.06);}
-body.light .sidebar-summon{background:#ffffff;border-color:rgba(0,0,0,0.12);box-shadow:0 2px 10px rgba(15,23,42,0.08);}
-body.light .sidebar-summon:hover{background:#f9fafb;border-color:var(--gold);}
-body.light .sidebar-overlay{background:rgba(0,0,0,0.2);}
-body.light .sidebar-logo{border-bottom-color:rgba(0,0,0,0.07);}
-body.light .sidebar-nav a{color:#4b5563;font-family:'Inter',sans-serif;}
-body.light .sidebar-nav a:hover,body.light .sidebar-nav a.active-link{color:#111827;background:rgba(180,83,9,0.06);}
-body.light .sidebar-nav a.active-link{color:var(--gold);}
-body.light .sidebar-nav .nav-section{color:#9ca3af;}
-body.light .sidebar-nav .nav-divider{background:rgba(0,0,0,0.07);}
-body.light .sidebar-bottom{border-top-color:rgba(0,0,0,0.07);}
-body.light .sidebar-tagline{color:#9ca3af;}
-body.light .s-social{border-color:rgba(0,0,0,0.12);color:#6b7280;}
+/* Sidebar — NCA clean white */
+body.light .sidebar{
+  background:#ffffff;
+  border-right-color:rgba(148,163,184,.3);
+  box-shadow:4px 0 24px rgba(15,23,42,.08);
+}
+body.light .sidebar-summon{
+  background:rgba(255,255,255,.92);
+  border-color:rgba(148,163,184,.45);
+  box-shadow:0 4px 16px rgba(15,23,42,.1);
+}
+body.light .sidebar-summon:hover{background:#ffffff;border-color:var(--gold);}
+body.light .sidebar-logo{border-bottom-color:rgba(148,163,184,.2);}
+body.light .sidebar-nav a{color:#6b7280;}
+body.light .sidebar-nav a:hover{color:#111827;background:#f1f5f9;}
+body.light .sidebar-nav a.active-link{color:var(--gold);background:#fef9ef;}
+body.light .sidebar-nav .nav-section{color:rgba(107,114,128,.55);}
+body.light .sidebar-nav .nav-divider{background:rgba(148,163,184,.2);}
+body.light .sidebar-bottom{border-top-color:rgba(148,163,184,.2);}
+body.light .sidebar-tagline{color:rgba(107,114,128,.55);}
+body.light .s-social{border-color:rgba(148,163,184,.3);color:#9ca3af;}
 body.light .s-social:hover{border-color:var(--gold);color:var(--gold);}
-body.light .sidebar-contact-btn,body.light .contact-btn{background:var(--gold);color:#ffffff;}
-body.light .sidebar-contact-btn:hover,body.light .contact-btn:hover{background:#c05621;}
+body.light .sidebar-contact-btn{background:var(--gold);color:#fff;}
 
 /* Theme toggle button */
 body.light .theme-toggle-btn{background:rgba(255,255,255,.92);border-color:rgba(148,163,184,.45);}
@@ -218,10 +224,9 @@ body::after{
 .main-content{margin-left:0;flex:1;min-width:0;transition:margin-left 0.38s cubic-bezier(.4,0,.2,1);}
 .main-content.sidebar-pushed{margin-left:var(--sidebar-w);}
 .wrap{max-width:1260px;margin:0 auto;padding:0 52px}
-.container{max-width:1180px;margin:0 auto;padding:0 48px;}
-@media(max-width:900px){.wrap{padding:0 28px}.container{padding:0 32px;}}
-@media(max-width:600px){.wrap{padding:0 20px}.container{padding:0 20px;}}
-#hero .wrap,#hero .hero-content{display:flex;flex-direction:column;flex:1;width:100%}
+@media(max-width:900px){.wrap{padding:0 28px}}
+@media(max-width:600px){.wrap{padding:0 20px}}
+#hero .wrap{display:flex;flex-direction:column;flex:1;width:100%}
 
 .eyebrow{
   display:inline-flex;align-items:center;gap:10px;
@@ -278,71 +283,79 @@ body::after{
 =================================================== */
 .sidebar-summon{
   position:fixed;left:20px;top:20px;z-index:1100;cursor:pointer;
-  background:rgba(8,8,8,0.82);border:1px solid rgba(201,169,110,0.35);
+  background:rgba(8,8,8,.82);border:1px solid rgba(201,169,110,.35);
   border-radius:10px;padding:11px 12px;
   display:flex;flex-direction:column;align-items:center;gap:5px;
-  transition:background 0.3s,border-color 0.3s,left 0.38s ease,box-shadow 0.3s,transform 0.3s;
-  box-shadow:0 4px 20px rgba(0,0,0,0.55);backdrop-filter:blur(10px);
+  transition:background .3s,border-color .3s,left .38s var(--ease),box-shadow .3s,transform .3s;
+  box-shadow:0 4px 20px rgba(0,0,0,.55);backdrop-filter:blur(10px);
 }
-.sidebar-summon:hover{background:rgba(20,20,20,0.95);border-color:var(--gold);box-shadow:0 6px 28px rgba(201,169,110,0.2);transform:scale(1.05);}
+.sidebar-summon:hover{background:rgba(20,20,20,.95);border-color:var(--gold);box-shadow:0 6px 28px rgba(201,169,110,.2);transform:scale(1.05);}
 .sidebar-summon.sidebar-open{left:calc(var(--sidebar-w) + 12px);}
-.summon-bar{width:18px;height:2px;background:var(--gold);display:block;border-radius:2px;transition:transform 0.35s,opacity 0.3s,width 0.3s;}
-.summon-bar:nth-child(2){width:12px;opacity:0.55;}
-.summon-bar:nth-child(3){width:15px;opacity:0.8;}
+.summon-bar{width:18px;height:2px;background:var(--gold);display:block;border-radius:2px;transition:transform .35s,opacity .3s,width .3s;}
+.summon-bar:nth-child(2){width:12px;opacity:.55;}
+.summon-bar:nth-child(3){width:15px;opacity:.8;}
 .sidebar-summon.sidebar-open .summon-bar:nth-child(1){transform:rotate(45deg) translate(2px,2px);}
 .sidebar-summon.sidebar-open .summon-bar:nth-child(2){opacity:0;transform:scaleX(0);}
 .sidebar-summon.sidebar-open .summon-bar:nth-child(3){transform:rotate(-45deg) translate(2px,-2px);width:18px;}
 
 .sidebar{
   position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;
-  background:#080808;border-right:1px solid rgba(201,169,110,0.12);
-  display:flex;flex-direction:column;z-index:1000;overflow-y:auto;
-  transform:translateX(-100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  background:#080808;border-right:1px solid rgba(201,169,110,.12);
+  display:flex;flex-direction:column;z-index:1000;
+  overflow-y:auto;
+  transform:translateX(-100%);
+  transition:transform .38s var(--ease);
 }
 .sidebar.open{transform:translateX(0);}
 
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:998;opacity:0;transition:opacity 0.35s;}
+.sidebar-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);
+  z-index:998;opacity:0;transition:opacity .35s;
+}
 .sidebar-overlay.active{display:block;opacity:1;}
 
-.sidebar-logo{padding:32px 28px 24px;border-bottom:1px solid rgba(201,169,110,0.1);}
-.sidebar-logo img,.logo-img{height:40px;width:auto;object-fit:contain;display:block;cursor:pointer;}
+.sidebar-logo{padding:32px 28px 24px;border-bottom:1px solid rgba(201,169,110,.1);}
+.sidebar-logo img{height:38px;width:auto;object-fit:contain;}
 
 .sidebar-nav{flex:1;padding:28px 0 20px;}
 .sidebar-nav a{
-  display:flex;align-items:center;gap:14px;padding:13px 28px;
-  font-size:12px;letter-spacing:0.2em;text-transform:uppercase;
+  display:flex;align-items:center;gap:14px;
+  padding:13px 28px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--text);text-decoration:none;cursor:pointer;
   border:none;background:none;font-family:var(--ff-body);width:100%;text-align:left;
-  position:relative;transition:color 0.3s,background 0.3s;
+  position:relative;transition:color .3s,background .3s;
 }
-.sidebar-nav a::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform 0.3s;transform-origin:bottom;}
-.sidebar-nav a:hover{color:var(--cream);background:rgba(201,169,110,0.05);}
+.sidebar-nav a::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--gold);transform:scaleY(0);transition:transform .3s;transform-origin:bottom;
+}
+.sidebar-nav a:hover{color:var(--cream);background:rgba(201,169,110,.05);}
 .sidebar-nav a:hover::before{transform:scaleY(1);}
-.sidebar-nav a.active-link{color:var(--gold);background:rgba(201,169,110,0.08);}
+.sidebar-nav a.active-link{color:var(--gold);background:rgba(201,169,110,.08);}
 .sidebar-nav a.active-link::before{transform:scaleY(1);}
 .nav-label{flex:1;}
-.sidebar-nav .nav-section{font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:rgba(201,169,110,0.4);padding:20px 28px 8px;display:block;}
-.sidebar-nav .nav-divider{height:1px;background:rgba(201,169,110,0.08);margin:10px 28px;}
+.sidebar-nav .nav-section{font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:rgba(201,169,110,.4);padding:20px 28px 8px;display:block;}
+.sidebar-nav .nav-divider{height:1px;background:rgba(201,169,110,.08);margin:10px 28px;}
 
-.sidebar-contact-btn,.contact-btn{
+.sidebar-contact-btn{
   margin:0 20px 28px;display:block;padding:13px 20px;
   background:var(--gold);color:var(--ink);
-  font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:700;
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;
   text-align:center;border:none;cursor:pointer;font-family:var(--ff-body);
-  transition:background 0.3s;text-decoration:none;
+  transition:background .3s;text-decoration:none;
 }
-.sidebar-contact-btn:hover,.contact-btn:hover{background:var(--gold2);}
+.sidebar-contact-btn:hover{background:var(--gold2);}
 
-.sidebar-bottom{padding:20px 28px 28px;border-top:1px solid rgba(201,169,110,0.1);}
+.sidebar-bottom{padding:20px 28px 28px;border-top:1px solid rgba(201,169,110,.1);}
 .sidebar-socials{display:flex;gap:8px;margin-bottom:16px;}
 .s-social{
-  width:30px;height:30px;border:1px solid rgba(201,169,110,0.2);
+  width:30px;height:30px;border:1px solid rgba(201,169,110,.2);
   display:flex;align-items:center;justify-content:center;
   font-size:11px;color:var(--text2);text-decoration:none;
-  transition:border-color 0.3s,color 0.3s;
+  transition:border-color .3s,color .3s;
 }
 .s-social:hover{border-color:var(--gold);color:var(--gold);}
-.sidebar-tagline{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,169,110,0.35);line-height:1.7;}
+.sidebar-tagline{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,169,110,.35);line-height:1.7;}
 
 /* ===================================================
    THEME TOGGLE — exact match to origin site
@@ -356,13 +369,20 @@ body::after{
   transition:background .3s,border-color .3s,box-shadow .3s;
   box-shadow:0 2px 12px rgba(0,0,0,.4);
 }
-.theme-toggle-btn:hover{background:rgba(20,20,20,0.95);border-color:var(--gold);box-shadow:0 4px 18px rgba(201,169,110,0.18);}
-.toggle-track{width:26px;height:14px;background:var(--gold3);border-radius:50px;position:relative;transition:background 0.4s;flex-shrink:0;}
-.toggle-thumb{position:absolute;top:2px;left:2px;width:10px;height:10px;background:var(--cream);border-radius:50%;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;justify-content:center;font-size:6px;line-height:1;}
-body.light .theme-toggle-btn{background:rgba(255,255,255,0.95);border-color:rgba(0,0,0,0.12);box-shadow:0 2px 8px rgba(15,23,42,0.08);}
-body.light .theme-toggle-btn:hover{background:#f9fafb;border-color:var(--gold);}
-body.light .toggle-track{background:var(--gold);}
-body.light .toggle-thumb{transform:translateX(12px);background:#ffffff;}
+.theme-toggle-btn:hover{background:rgba(20,20,20,.95);border-color:var(--gold);box-shadow:0 4px 18px rgba(201,169,110,.18);}
+body.light .theme-toggle-btn{background:rgba(175,171,163,.9);border-color:rgba(92,66,15,.4);}
+body.light .theme-toggle-btn:hover{background:rgba(160,156,148,.98);border-color:var(--gold);}
+/* track */
+.toggle-track{width:26px;height:14px;background:var(--gold3);border-radius:50px;position:relative;transition:background .4s;flex-shrink:0;}
+/* thumb — slides right in light mode via CSS, icon swapped by JS */
+.toggle-thumb{
+  position:absolute;top:2px;left:2px;width:10px;height:10px;
+  background:#F7F4EF;border-radius:50%;
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;justify-content:center;font-size:6px;line-height:1;
+}
+body.light .toggle-thumb{transform:translateX(12px);background:#1A1A1A;}
+/* label hidden — same as origin site */
 .toggle-label{display:none;}
 
 /* ===================================================
@@ -371,41 +391,81 @@ body.light .toggle-thumb{transform:translateX(12px);background:#ffffff;}
 #header{display:none !important;}
 
 /* Mobile topbar */
-.topbar{display:none;position:fixed;top:0;left:0;right:0;height:60px;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(201,169,110,0.12);align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;}
-.topbar img,.topbar .logo-img{height:34px;width:auto;object-fit:contain;}
+.topbar{
+  display:none;position:fixed;top:0;left:0;right:0;height:60px;
+  background:rgba(8,8,8,.97);border-bottom:1px solid rgba(201,169,110,.12);
+  align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;
+}
+.topbar img{height:34px;width:auto;object-fit:contain;}
 .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform 0.3s,opacity 0.3s;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s;}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.mob-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,0.99);flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.mob-menu{
+  display:none;position:fixed;inset:0;background:rgba(8,8,8,.99);
+  flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:999;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
 .mob-menu.open{opacity:1;pointer-events:all;}
-.mob-menu a{font-family:var(--ff-display);font-size:28px;font-weight:700;letter-spacing:0.08em;color:var(--cream);text-decoration:none;transition:color 0.3s;cursor:pointer;}
+.mob-menu a{font-family:var(--ff-display);font-size:28px;font-weight:700;letter-spacing:.08em;color:var(--cream);text-decoration:none;transition:color .3s;cursor:pointer;}
 .mob-menu a:hover{color:var(--gold);}
-.mob-divider{width:36px;height:1px;background:var(--gold);opacity:0.3;}
-body.light .topbar{background:rgba(255,255,255,0.97);border-bottom-color:rgba(0,0,0,0.08);}
-body.light .hamburger span{background:#1f2937;}
-body.light .mob-menu{background:rgba(255,255,255,0.99);}
-body.light .mob-menu a{color:#111827;}
+.mob-divider{width:36px;height:1px;background:var(--gold);opacity:.3;}
 
 /* ===================================================
-   HERO
+   HERO — services page style
 =================================================== */
-/* ── PAGE HERO — matches services.html pattern ── */
-#hero{padding:80px 0 60px;position:relative;overflow:hidden;margin-bottom:0;}
-#hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.025) 1px,transparent 1px);background-size:72px 72px;z-index:1;}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;}
-.hero-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,0.88) 30%,rgba(5,5,5,0.60) 65%,rgba(5,5,5,0.35) 100%);z-index:2;}
+#hero{
+  padding:80px 0 60px;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:0;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,169,110,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,169,110,0.025) 1px,transparent 1px);
+  background-size:72px 72px;z-index:1;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  background-image:url('https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_v426euv426euv426.webp');
+  background-size:cover;background-position:center;
+  opacity:0.45;
+}
+.hero-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(5,5,5,.88) 30%,rgba(5,5,5,.60) 65%,rgba(5,5,5,.35) 100%);
+  z-index:2;
+}
+.hero-diag{display:none;}
 .hero-content{position:relative;z-index:3;}
-#hero h1{font-size:clamp(40px,6vw,80px);font-weight:700;line-height:1.1;animation:fadeUp 0.7s both;}
+.hero-section-label{
+  font-size:11px;letter-spacing:.46em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:14px;
+  animation:fadeUp .7s both;
+}
+#hero h1{
+  font-family:var(--ff-display);
+  font-size:clamp(40px,6vw,80px);
+  font-weight:700;line-height:1.1;
+  color:var(--cream);
+  animation:fadeUp .7s both;
+}
 #hero h1 em{font-style:italic;color:var(--gold2);}
-#hero .section-label{font-size:11px;letter-spacing:0.46em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px;}
-#hero p{font-size:15px;color:var(--text);max-width:500px;margin-top:16px;animation:fadeUp 0.7s 0.2s both;}
+.hero-desc{
+  font-size:15px;color:var(--text);
+  max-width:500px;margin-top:16px;
+  animation:fadeUp .7s .2s both;
+}
 body.light #hero{background:linear-gradient(135deg,#1e293b 0%,#0f172a 60%,#1e293b 100%);}
-body.light .hero-veil{background:linear-gradient(90deg,rgba(15,23,42,0.92) 30%,rgba(15,23,42,0.65) 65%,rgba(15,23,42,0.35) 100%);}
-body.light .hero-bg{opacity:0.38;}
+body.light .hero-veil{background:linear-gradient(90deg,rgba(15,23,42,.92) 30%,rgba(15,23,42,.65) 65%,rgba(15,23,42,.35) 100%);}
+body.light .hero-bg{opacity:.38;}
 body.light #hero h1{color:#f9fafb;}
-body.light #hero p{color:rgba(249,250,251,0.75);}
+body.light .hero-desc{color:rgba(249,250,251,.75);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 
 /* ===================================================
@@ -612,11 +672,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 }
 .when-card:hover{border-color:rgba(201,169,110,.28);transform:translateY(-4px)}
 .when-num{
-  font-family:var(--ff-display);
-  font-size:38px;font-weight:900;
-  color:var(--gold);opacity:.18;
-  line-height:1;margin-bottom:10px;
-  letter-spacing:-.03em;
+  display:none;
 }
 .when-card p{
   font-size:13.5px;color:var(--text);line-height:1.68;
@@ -824,27 +880,20 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 <body>
 
 <!-- ════ MOBILE TOPBAR ════ -->
-<div class="site-wrapper">
 <div class="topbar" id="topbar">
-  <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
-  <button class="hamburger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+  <button class="hamburger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div>
 
 <!-- ════ MOBILE MENU ════ -->
 <div class="mob-menu" id="mob-menu">
   <a href="index.html">Home</a>
   <div class="mob-divider"></div>
-  <a href="ndtabout.html" style="color:var(--gold)">About Us</a>
+  <a href="ndtabout.html">About Us</a>
   <div class="mob-divider"></div>
   <a href="services.html">Our Services</a>
   <div class="mob-divider"></div>
-  <a href="clients.html">Our Clients</a>
-  <div class="mob-divider"></div>
   <a href="timeline.html">Our Past Work</a>
-  <div class="mob-divider"></div>
-  <a href="gallery.html">Our Gallery</a>
   <div class="mob-divider"></div>
   <a href="contact.html">Contact Us</a>
 </div>
@@ -862,9 +911,9 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 <!-- ════ SIDEBAR ════ -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
+    <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
   </div>
-  <nav class="sidebar-nav" id="main-nav">
+  <nav class="sidebar-nav">
     <span class="nav-section">Main Menu</span>
     <a href="index.html"><span class="nav-label">Home</span></a>
     <a href="ndtabout.html" class="active-link"><span class="nav-label">About Us</span></a>
@@ -877,17 +926,17 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
     <span class="nav-section">Connect</span>
     <a href="clients.html"><span class="nav-label">Our Clients</span></a>
   </nav>
-  <a href="contact.html" class="contact-btn">Contact Us</a>
+  <a href="contact.html" class="sidebar-contact-btn">Contact Us</a>
   <div class="sidebar-bottom">
     <div class="sidebar-socials">
-      <a href="https://www.facebook.com/ndteastafrica" class="s-social" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <a href="https://www.facebook.com/ndteastafrica" target="_blank" rel="noopener" class="s-social" aria-label="Facebook">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
       </a>
-      <a href="https://twitter.com/ndteastafrica" class="s-social" target="_blank" rel="noopener" aria-label="X / Twitter">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.843L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <a href="https://twitter.com/ndteastafrica" target="_blank" rel="noopener" class="s-social" aria-label="X / Twitter">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a href="https://www.instagram.com/ndteastafrica" class="s-social" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <a href="https://www.instagram.com/ndteastafrica" target="_blank" rel="noopener" class="s-social" aria-label="Instagram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
     </div>
     <div class="sidebar-tagline">PRECISION &middot; INTEGRITY<br>EXCELLENCE</div>
@@ -903,15 +952,13 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <div class="main-content" id="main-content">
 <section id="hero">
-  <img class="hero-bg" src="https://www.ndt-ea.com/wp-content/uploads/2025/08/Gemini_Generated_Image_v426euv426euv426.webp" alt="NDT East Africa About"/>
+  <div class="hero-bg"></div>
   <div class="hero-veil"></div>
-
   <div class="wrap hero-content">
-    <span class="section-label">Who We Are</span>
+    <span class="hero-section-label">Who We Are</span>
     <h1>About <em>NDT East Africa</em></h1>
-    <p>At <strong>NDT East Africa Limited</strong>, we offer Non Destructive Testing services on Concrete and Steel Structures in East Africa and beyond. Based in Nairobi, <strong>Kenya</strong> — our Engineers and Technicians bring more than ten years of hands-on construction industry experience to every engagement.</p>
+    <p class="hero-desc">15+ years of precision Non-Destructive Testing and Structural Audit solutions across East Africa and beyond.</p>
   </div>
-
 </section>
 
 <!-- ═══════════════════ ABOUT AT A GLANCE ═══════════════════ -->
@@ -936,13 +983,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 
       <!-- Text -->
       <div class="about-text">
-        <span class="eyebrow r">Who We Are</span>
-        <h2 class="display r" style="margin-top:14px">Precision Testing. <em>Trusted Results.</em></h2>
-        <div class="rule r"></div>
-        <p class="r">NDT East Africa Limited offers Non Destructive Testing services on Concrete and Steel Structures across East Africa and beyond. Based in Nairobi, <strong>Kenya</strong>, our team of Engineers and Technicians brings over a decade of hands-on construction industry experience to every project.</p>
-        <p class="r d1">We advise clients on the most suitable Non-Destructive Test depending on their unique structural needs — combining international best practice with deep local knowledge.</p>
-
-        <p class="r d2" style="margin-top:28px;font-size:16px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Our Main Areas of Business</p>
+        <p class="r d2" style="margin-top:0;font-size:16px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Our Main Areas of Business</p>
         <ul class="biz-list r d2">
           <li class="biz-item">To estimate the in-situ compressive strength of concrete.</li>
           <li class="biz-item">To identify/map reinforcement profile on slabs, beams, columns and other structural elements.</li>
@@ -1130,7 +1171,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
           <div class="ci-icon">✉</div>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val"><a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a></div>
+            <div class="ci-val"><a href="/cdn-cgi/l/email-protection#066f686069466862722b63672865696b"><span class="__cf_email__" data-cfemail="a1c8cfc7cee1cfc5d58cc4c08fc2cecc">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="ci">
@@ -1350,7 +1391,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
           Water Sys Plaza<br/>
           Biashara Street, Nairobi<br/><br/>
           <a href="tel:+254721414663">+254 721 414 663</a><br/><br/>
-          <a href="mailto:info@ndt-ea.com">info@ndt-ea.com</a>
+          <a href="/cdn-cgi/l/email-protection#b8d1d6ded7f8d6dccc95ddd996dbd7d5"><span class="__cf_email__" data-cfemail="85ecebe3eac5ebe1f1a8e0e4abe6eae8">[email&#160;protected]</span></a>
         </address>
       </div>
     </div>
@@ -1362,7 +1403,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 </footer>
 
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── SIDEBAR with auto-close ──
 const summon      = document.getElementById('sidebar-summon');
 const sidebar     = document.getElementById('sidebar');
@@ -1408,41 +1449,27 @@ sidebar.addEventListener('mouseleave', () => {
 overlay.addEventListener('click', closeSidebar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
-// ── MOBILE HAMBURGER — opens sidebar on mobile ──
+// ── MOBILE HAMBURGER ──
 const burger  = document.getElementById('burger');
 const mobMenu = document.getElementById('mob-menu');
 
-if (burger) {
+if (burger && mobMenu) {
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
-    // On mobile, open the sidebar (same as desktop summon)
-    if (window.innerWidth <= 768) {
-      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
-    } else {
-      // Fallback: toggle mob-menu for any edge case
-      if (mobMenu) {
-        const isOpen = mobMenu.style.display === 'flex';
-        mobMenu.style.display       = isOpen ? 'none'  : 'flex';
-        mobMenu.style.opacity       = isOpen ? '0'     : '1';
-        mobMenu.style.pointerEvents = isOpen ? 'none'  : 'all';
-      }
-    }
+    const isOpen = mobMenu.style.display === 'flex';
+    mobMenu.style.display        = isOpen ? 'none'  : 'flex';
+    mobMenu.style.opacity        = isOpen ? '0'     : '1';
+    mobMenu.style.pointerEvents  = isOpen ? 'none'  : 'all';
   });
-  // Close burger indicator when sidebar closes via overlay/escape
-  const origClose = closeSidebar;
-}
-
-// Also close burger icon whenever sidebar is closed
-const _origClose = closeSidebar;
-function closeSidebar() {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('active');
-  summon.classList.remove('sidebar-open');
-  if (mainContent) mainContent.classList.remove('sidebar-pushed');
-  clearTimeout(autoCloseTimer);
-  // Sync burger icon
-  const b = document.getElementById('burger');
-  if (b) b.classList.remove('open');
+  // Close mobile menu when any link is tapped
+  mobMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobMenu.style.display       = 'none';
+      mobMenu.style.opacity       = '0';
+      mobMenu.style.pointerEvents = 'none';
+      burger.classList.remove('open');
+    });
+  });
 }
 
 // ── THEME TOGGLE ──
@@ -1460,12 +1487,7 @@ if (localStorage.getItem('ndt-theme') === 'light') {
   document.getElementById('toggle-thumb').textContent = '🌙';
 }
 
-// ── SIDEBAR NAV LINKS — close sidebar on tap (mobile) ──
-document.querySelectorAll('.sidebar-nav a, .contact-btn').forEach(link => {
-  link.addEventListener('click', () => {
-    closeSidebar();
-  });
-});
+// ── FAQ ACCORDION ──
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => {
     const item   = q.closest('.faq-item');
@@ -1477,18 +1499,16 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
 
 // ── SCROLL REVEAL ──
-const revealEls = document.querySelectorAll('.r, .reveal');
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('on', 'visible');
-      ro.unobserve(entry.target);
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      revealObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.12 });
-revealEls.forEach(el => ro.observe(el));
+}, { threshold: 0.08 });
+document.querySelectorAll('.r').forEach(el => revealObs.observe(el));
 
 </script>
-</div><!-- /.site-wrapper -->
 </body>
 </html>

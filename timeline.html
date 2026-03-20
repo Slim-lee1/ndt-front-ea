@@ -123,35 +123,45 @@ a{color:inherit;text-decoration:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
 /* ===================================================
-   MOBILE TOPBAR
+   MOBILE TOPBAR — matches clients.html exactly
+   hamburger LEFT · logo RIGHT · theme toggle far RIGHT
 =================================================== */
 .topbar{
-  display:none;position:fixed;top:0;left:0;right:0;height:62px;
-  background:rgba(10,10,10,.97);border-bottom:1px solid var(--border);
-  align-items:center;justify-content:space-between;padding:0 20px;z-index:1001;
+  display:none;position:fixed;top:0;left:0;right:0;height:60px;
+  background:rgba(8,8,8,.97);border-bottom:1px solid rgba(201,169,110,.12);
+  align-items:center;justify-content:space-between;
+  flex-direction:row-reverse; /* hamburger LEFT, logo RIGHT */
+  padding:0 20px;z-index:1001;
 }
-body.light .topbar{background:rgba(255,255,255,.97);border-bottom-color:var(--border2)}
-.topbar img{height:34px;width:auto;object-fit:contain}
+body.light .topbar{background:rgba(255,255,255,.97);border-bottom-color:rgba(0,0,0,.08)}
+.topbar .logo-img{height:34px;width:auto;object-fit:contain}
+
+/* Hamburger */
 .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+body.light .hamburger span{background:#1f2937}
 
-/* ── MOBILE MENU ── */
+/* ── MOBILE MENU — opacity fade + .open class (matches clients) ── */
 .mob-menu{
-  display:none;position:fixed;inset:0;top:62px;
-  background:rgba(10,10,10,.99);
+  display:none;position:fixed;inset:0; /* full-screen from top:0 */
+  background:rgba(8,8,8,.99);
   flex-direction:column;align-items:center;justify-content:center;
-  gap:20px;z-index:999;overflow-y:auto;
+  gap:20px;z-index:999;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
 }
+.mob-menu.open{opacity:1;pointer-events:all}
 body.light .mob-menu{background:rgba(255,255,255,.99)}
 .mob-menu a{
-  font-family:var(--ff-display);font-size:26px;font-weight:700;
-  letter-spacing:.06em;color:var(--cream);
-  transition:color .3s;cursor:pointer;
+  font-family:var(--ff-display);font-size:28px;font-weight:700;
+  letter-spacing:.08em;color:var(--cream);
+  text-decoration:none;transition:color .3s;cursor:pointer;
 }
 .mob-menu a:hover{color:var(--gold)}
+body.light .mob-menu a{color:#111827}
 .mob-divider{width:36px;height:1px;background:var(--gold);opacity:.3}
 
 /* ===================================================
@@ -636,13 +646,14 @@ body.light .footer-col a:hover{color:#111827}
 body.light .footer-bottom p{color:#6b7280}
 
 /* ===================================================
-   RESPONSIVE
+   RESPONSIVE — aligned with clients-mobile.css
 =================================================== */
+
+/* ── Tablet (≤1100px): left-rail timeline ── */
 @media(max-width:1100px){
   .wrap{padding:0 32px}
   .cta-grid{grid-template-columns:1fr;gap:52px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
-  /* Collapse timeline to left-rail on tablet */
   .tl-spine{left:32px}
   .tl-row{grid-template-columns:64px 1fr}
   .tl-row.left .card-slot,
@@ -657,23 +668,27 @@ body.light .footer-bottom p{color:#6b7280}
   .tl-year-pill::after{width:60px}
   .tl-year-head{justify-content:flex-start;padding-left:14px}
 }
+
+/* ── Mobile (≤768px): topbar shown, sidebar summon kept, single-column ── */
 @media(max-width:768px){
-  /* ── Chrome / UI ── */
+  /* Show mobile topbar */
   .topbar{display:flex}
-  .mob-menu{display:none} /* JS toggles to flex */
-  .sidebar-summon{display:none}
+
+  /* Keep sidebar-summon visible on mobile (matches clients.html) */
+  /* sidebar-summon intentionally NOT hidden */
+
+  /* Prevent sidebar pushing content off-screen */
   .main-content.sidebar-pushed{margin-left:0}
 
-  /* ── Theme toggle: tuck below topbar, away from hamburger ── */
+  /* Theme toggle: sits inside topbar zone, top-right */
   .theme-toggle-btn{
-    top:auto;bottom:16px;right:16px;
-    box-shadow:0 4px 16px rgba(0,0,0,.45);
+    top:10px;right:16px;z-index:1002;
   }
   .toggle-label{display:none}
 
-  /* ── Hero: clear topbar + comfortable spacing ── */
+  /* Hero: clear 60px topbar */
   #hero{
-    padding-top:86px;   /* 62 px topbar + 24 px breathing room */
+    padding-top:84px; /* 60px topbar + 24px breathing room */
     padding-bottom:56px;
     min-height:auto;
   }
@@ -682,16 +697,12 @@ body.light .footer-bottom p{color:#6b7280}
   .hero-meta{gap:20px;flex-wrap:wrap}
   .hero-meta-num{font-size:28px}
 
-  /* ── Wrap ── */
-  .wrap{padding:0 16px}
+  /* Wrap */
+  .wrap{padding:0 20px}
 
-  /* ── TIMELINE: single-column, left-rail spine ── */
+  /* Timeline: single-column, left-rail spine */
   #timeline{padding:56px 0 72px}
-
-  /* Move spine to left edge */
   .tl-spine{left:20px;transform:none}
-
-  /* Collapse every row to a single column with the node on the left rail */
   .tl-row{
     display:grid;
     grid-template-columns:40px 1fr;
@@ -699,68 +710,53 @@ body.light .footer-bottom p{color:#6b7280}
     align-items:start;
     margin-bottom:4px;
   }
-
-  /* node always in column 1 */
-  .tl-row.left  .node-slot,
-  .tl-row.right .node-slot{
-    grid-column:1;grid-row:1;
-    justify-content:center;padding-top:22px;
-  }
-
-  /* card always in column 2 */
-  .tl-row.left  .card-slot,
-  .tl-row.right .card-slot{
-    grid-column:2;grid-row:1;
-    padding:0 0 0 12px;
-    display:block;
-  }
-
-  /* hide the empty void column entirely */
-  .tl-row.left  .void,
+  .tl-row.left .node-slot,
+  .tl-row.right .node-slot{grid-column:1;grid-row:1;justify-content:center;padding-top:22px}
+  .tl-row.left .card-slot,
+  .tl-row.right .card-slot{grid-column:2;grid-row:1;padding:0 0 0 12px;display:block}
+  .tl-row.left .void,
   .tl-row.right .void{display:none}
-
-  /* connectors not needed in single-column mode */
   .proj-card::before{display:none !important}
-
-  /* cards take full width */
   .proj-card{max-width:100%;padding:22px 20px}
-
-  /* year headers: left-align, offset to match card column */
   .tl-year-head{justify-content:flex-start;padding-left:52px;margin:48px 0 8px}
   .tl-year-pill{padding:10px 20px}
   .tl-year-pill::before,.tl-year-pill::after{display:none}
   .year-num{font-size:24px}
-
-  /* end badge */
   .tl-end{margin-top:48px}
   .end-pill{padding:16px 28px}
 
-  /* ── CTA ── */
+  /* CTA */
   #cta{padding:72px 0}
   .cta-box{padding:32px 20px}
 
-  /* ── Footer ── */
+  /* Footer */
   .footer-grid{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;text-align:center}
   #footer{padding:48px 0 28px}
 }
 
-/* Extra-small phones */
+/* ── Extra-small phones (≤400px) ── */
 @media(max-width:400px){
   .hero-title{font-size:28px}
   .proj-card{padding:18px 16px}
   .card-client{font-size:15px}
 }
+
+/* ── Light-mode overrides for mobile elements ── */
+body.light .topbar{background:rgba(255,255,255,.97);border-bottom-color:rgba(0,0,0,.08)}
+body.light .hamburger span{background:#1f2937}
+body.light .mob-menu{background:rgba(255,255,255,.99)}
+body.light .mob-menu a{color:#111827}
 </style>
 </head>
 <body>
 
 <!-- ════ MOBILE TOPBAR ════ -->
 <div class="topbar" id="topbar">
-  <img src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
   <button class="hamburger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
+  <img class="logo-img" src="https://www.ndt-ea.com/wp-content/uploads/2025/07/imgi_1_logo-new1-removebg-preview.png" alt="NDT East Africa"/>
 </div>
 
 <!-- ════ MOBILE MENU ════ -->
@@ -1213,14 +1209,22 @@ sidebar.addEventListener('mouseleave', startAutoClose);
 summon.addEventListener('mouseenter', cancelAutoClose);
 summon.addEventListener('mouseleave', ()=>{ if(sidebar.classList.contains('open')) startAutoClose(); });
 
-// ── MOBILE HAMBURGER ──
+// ── MOBILE HAMBURGER — opacity fade + .open class (matches clients.html) ──
 const burger  = document.getElementById('burger');
 const mobMenu = document.getElementById('mob-menu');
 if(burger){
   burger.addEventListener('click',()=>{
-    const isOpen = mobMenu.style.display === 'flex';
+    const isOpen = mobMenu.classList.contains('open');
     burger.classList.toggle('open', !isOpen);
-    mobMenu.style.display = isOpen ? 'none' : 'flex';
+    if(!isOpen){
+      mobMenu.style.display = 'flex';
+      requestAnimationFrame(()=> mobMenu.classList.add('open'));
+    } else {
+      mobMenu.classList.remove('open');
+      mobMenu.addEventListener('transitionend',()=>{
+        mobMenu.style.display = 'none';
+      },{once:true});
+    }
   });
 }
 

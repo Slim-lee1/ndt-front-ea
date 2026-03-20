@@ -296,7 +296,7 @@ body::after{
 .sidebar{
   position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;
   background:#080808;border-right:1px solid rgba(201,169,110,0.12);
-  display:flex;flex-direction:column;z-index:1100;overflow-y:auto;
+  display:flex;flex-direction:column;z-index:1000;overflow-y:auto;
   transform:translateX(-100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);
 }
 .sidebar.open{transform:translateX(0);}
@@ -804,8 +804,8 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
 }
 @media(max-width:768px){
   .topbar{display:flex}
+  .mob-menu{display:flex}
   .sidebar-summon{display:none}
-  .sidebar-overlay{z-index:1099;}
   .main-content.sidebar-pushed{margin-left:0;}
   #hero{padding-top:80px;padding-bottom:60px}
   .img-collage{height:300px}
@@ -817,7 +817,7 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
   .footer-bottom{flex-direction:column;text-align:center}
   .ndt-extended{padding:28px 28px}
   .cta-box{padding:36px 28px}
-  .theme-toggle-btn{top:14px;right:56px;}
+  .theme-toggle-btn{top:14px;right:14px;}
 }
 </style>
 </head>
@@ -964,6 +964,50 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
   </div>
 </section>
 
+<!-- ═══════════════════ WHY CHOOSE US ═══════════════════ -->
+<section id="why-us">
+  <div class="why-ghost">NDT</div>
+  <div class="wrap">
+    <div class="why-grid">
+
+      <div class="why-text">
+        <span class="eyebrow r">Expert Testing. Trusted Advice.</span>
+        <p class="r" style="font-family:'Lato',sans-serif;font-size:38px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#C9A96E;line-height:1;margin-top:14px;margin-bottom:14px;">WHY CHOOSE US</p>
+        <div class="rule r"></div>
+        <p class="r">NDT East Africa Limited offers Non Destructive Test services on Concrete Structures in East Africa and beyond. We are based in Nairobi, <strong>KENYA</strong>. Our rich technical experience in the construction industry permits us to advise Clients on the most suitable Non-Destructive Test depending on their needs.</p>
+      </div>
+
+      <div class="values-wrap">
+        <span class="eyebrow values-eyebrow r">Our Core Values</span>
+        <p class="values-subtitle r d1">Delivering trusted, value-driven insights with professionalism and care.</p>
+        <div class="values-grid">
+          <div class="val-card r">
+            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <div class="val-name">Professionalism</div>
+            <div class="val-desc">Highest standards in every engagement, delivering expert-level service at all times.</div>
+          </div>
+          <div class="val-card r d1">
+            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+            <div class="val-name">Integrity</div>
+            <div class="val-desc">Complete transparency and honesty in all our client relationships and findings.</div>
+          </div>
+          <div class="val-card r d2">
+            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+            <div class="val-name">Value Based</div>
+            <div class="val-desc">Solutions designed to give maximum return on investment while maintaining quality.</div>
+          </div>
+          <div class="val-card r d3">
+            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div class="val-name">Customer Centric</div>
+            <div class="val-desc">Every decision starts with understanding and meeting the specific needs of our clients.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════ WHY NON-DESTRUCTIVE TESTS ═══════════════════ -->
 <section id="why-ndt">
   <div class="wrap">
@@ -1058,50 +1102,6 @@ body.light #hero p{color:rgba(249,250,251,0.75);}
         <div class="when-num">12</div>
         <p>Monitoring long term changes in concrete properties and providing information for any proposed change of use of a structure for insurance or change of ownership.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ WHY CHOOSE US ═══════════════════ -->
-<section id="why-us">
-  <div class="why-ghost">NDT</div>
-  <div class="wrap">
-    <div class="why-grid">
-
-      <div class="why-text">
-        <span class="eyebrow r">Expert Testing. Trusted Advice.</span>
-        <p class="r" style="font-family:'Lato',sans-serif;font-size:38px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#C9A96E;line-height:1;margin-top:14px;margin-bottom:14px;">WHY CHOOSE US</p>
-        <div class="rule r"></div>
-        <p class="r">NDT East Africa Limited offers Non Destructive Test services on Concrete Structures in East Africa and beyond. We are based in Nairobi, <strong>KENYA</strong>. Our rich technical experience in the construction industry permits us to advise Clients on the most suitable Non-Destructive Test depending on their needs.</p>
-      </div>
-
-      <div class="values-wrap">
-        <span class="eyebrow values-eyebrow r">Our Core Values</span>
-        <p class="values-subtitle r d1">Delivering trusted, value-driven insights with professionalism and care.</p>
-        <div class="values-grid">
-          <div class="val-card r">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <div class="val-name">Professionalism</div>
-            <div class="val-desc">Highest standards in every engagement, delivering expert-level service at all times.</div>
-          </div>
-          <div class="val-card r d1">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
-            <div class="val-name">Integrity</div>
-            <div class="val-desc">Complete transparency and honesty in all our client relationships and findings.</div>
-          </div>
-          <div class="val-card r d2">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
-            <div class="val-name">Value Based</div>
-            <div class="val-desc">Solutions designed to give maximum return on investment while maintaining quality.</div>
-          </div>
-          <div class="val-card r d3">
-            <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <div class="val-name">Customer Centric</div>
-            <div class="val-desc">Every decision starts with understanding and meeting the specific needs of our clients.</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1384,8 +1384,6 @@ function closeSidebar() {
   summon.classList.remove('sidebar-open');
   if (mainContent) mainContent.classList.remove('sidebar-pushed');
   clearTimeout(autoCloseTimer);
-  const b = document.getElementById('burger');
-  if (b) b.classList.remove('open');
 }
 function scheduleClose() {
   clearTimeout(autoCloseTimer);
@@ -1394,7 +1392,7 @@ function scheduleClose() {
   }, 3000);
 }
 
-// Click toggle (desktop summon button)
+// Click toggle
 summon.addEventListener('click', () => sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
 
 // Cursor inside sidebar or summon — cancel pending close
@@ -1411,11 +1409,40 @@ overlay.addEventListener('click', closeSidebar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
 // ── MOBILE HAMBURGER — opens sidebar on mobile ──
-const burger = document.getElementById('burger');
+const burger  = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+
 if (burger) {
   burger.addEventListener('click', () => {
-    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    burger.classList.toggle('open');
+    // On mobile, open the sidebar (same as desktop summon)
+    if (window.innerWidth <= 768) {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    } else {
+      // Fallback: toggle mob-menu for any edge case
+      if (mobMenu) {
+        const isOpen = mobMenu.style.display === 'flex';
+        mobMenu.style.display       = isOpen ? 'none'  : 'flex';
+        mobMenu.style.opacity       = isOpen ? '0'     : '1';
+        mobMenu.style.pointerEvents = isOpen ? 'none'  : 'all';
+      }
+    }
   });
+  // Close burger indicator when sidebar closes via overlay/escape
+  const origClose = closeSidebar;
+}
+
+// Also close burger icon whenever sidebar is closed
+const _origClose = closeSidebar;
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+  summon.classList.remove('sidebar-open');
+  if (mainContent) mainContent.classList.remove('sidebar-pushed');
+  clearTimeout(autoCloseTimer);
+  // Sync burger icon
+  const b = document.getElementById('burger');
+  if (b) b.classList.remove('open');
 }
 
 // ── THEME TOGGLE ──
@@ -1462,7 +1489,6 @@ const ro = new IntersectionObserver((entries) => {
 revealEls.forEach(el => ro.observe(el));
 
 </script>
-</div><!-- /.main-content -->
 </div><!-- /.site-wrapper -->
 </body>
 </html>

@@ -1357,12 +1357,12 @@
     const LAT = -1.28332;
     const LNG = 36.81680;
     ndtMap = L.map('leaflet-map', { zoomControl: true, scrollWheelZoom: false }).setView([LAT, LNG], 17);
-    streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19
-    });
     satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: '© Esri — Source: Esri, Maxar, GeoEye',
+      maxZoom: 19
+    });
+    streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 19
     });
     streetLayer.addTo(ndtMap);
